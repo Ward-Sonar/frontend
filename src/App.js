@@ -1,8 +1,14 @@
+import { ThemeProvider } from '@material-ui/core/styles';
+
+import theme from './theme';
 import './App.css';
 
 function App() {
   return (
-    <div className="App"></div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+      </div>
+    </ThemeProvider>
   );
 }
 
