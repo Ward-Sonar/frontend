@@ -4,6 +4,8 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 
+import NetworkStatus from './../components/Network-status';
+
 import Logo from './../assets/nhs-leeds-and-yorkshire-partnership.png';
 
 class Header extends Component {
@@ -11,15 +13,15 @@ class Header extends Component {
     return (
       <Box
         component="header"
+        bgcolor="common.white"
         px={6}
         py={4}>
         <Grid
           container
-          spacing={3}
           justify="space-between"
           alignItems="center">
           <Grid item>
-            Wifi online
+            <NetworkStatus />
           </Grid>
 
           <Grid item>

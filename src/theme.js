@@ -25,7 +25,7 @@ const theme = createMuiTheme({
     },
     text: {
       primary: '#263238',
-      secondary: 'rgba(0, 0, 0, 0.87)'
+      secondary: 'rgba(0, 0, 0, 0.54)'
     }
   },
   typography: {
@@ -87,6 +87,9 @@ const theme = createMuiTheme({
       fontWeight: 700,
       lineHeight: '1.625rem',
       textTransform: 'none',
+    },
+    shadows: {
+      0: '0px 3px 4px rgba(0, 0, 0, 0.2)',
     }
   },
   overrides: {
