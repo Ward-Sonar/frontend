@@ -15,12 +15,13 @@ import StepOne from './pages/reporting-interface/StepOne';
 import StepTwo from './pages/reporting-interface/StepTwo';
 import StepThree from './pages/reporting-interface/StepThree';
 import StepFour from './pages/reporting-interface/StepFour';
+import StepFive from './pages/reporting-interface/StepFive';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 4
+      step: 1
     };
   }
 
@@ -35,17 +36,20 @@ class App extends Component {
             px={4}
             pt={8}
             pb={16}>
-              {this.state.step == 1 &&
+              {this.state.step === 1 &&
                 <StepOne />
               }
-              {this.state.step == 2 &&
+              {this.state.step === 2 &&
                 <StepTwo />
               }
-              {this.state.step == 3 &&
+              {this.state.step === 3 &&
                 <StepThree />
               }
-              {this.state.step == 4 &&
+              {this.state.step === 4 &&
                 <StepFour />
+              }
+              {this.state.step === 5 &&
+                <StepFive />
               }
           </Box>
           <Footer />

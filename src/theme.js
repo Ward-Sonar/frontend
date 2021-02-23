@@ -33,6 +33,9 @@ const theme = createMuiTheme({
     }
   },
   props: {
+    MuiButton: {
+      disableElevation: true,
+    },
     MuiTypography: {
       variantMapping: {
         h1: 'h1',
@@ -127,7 +130,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiButton: {
       root: {
-        padding: '2rem 3rem'
+        padding: '2rem 3rem',
       },
     },
     MuiDivider: {
