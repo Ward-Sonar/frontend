@@ -26,6 +26,10 @@ const theme = createMuiTheme({
     text: {
       primary: '#263238',
       secondary: 'rgba(0, 0, 0, 0.54)'
+    },
+    action: {
+      disabledBackground: 'rgba(27,94,32,0.5)',
+      disabled: 'white'
     }
   },
   props: {
@@ -108,6 +112,10 @@ const theme = createMuiTheme({
       fontWeight: 700,
       lineHeight: '1.625rem',
       textTransform: 'none',
+      ':disabled': {
+        backgroundColor: 'inherit',
+        color: 'black',
+      }
     },
     shadows: {
       0: '0px 3px 4px rgba(0, 0, 0, 0.2)',
