@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core';
 
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
-class StepTwo extends Component {
+class StepThree extends Component {
   render() {
     return (
       <div>
@@ -16,7 +16,7 @@ class StepTwo extends Component {
           alignItems="center">
             <Grid item xs={10}>
               <Typography variant="h1" align="center" gutterBottom>
-                How does the ward atmosphere feel to you today?
+                What direction is it going in?
               </Typography>
               <Typography variant="h4" align="center" gutterBottom>
                 You can only make 1 selection
@@ -35,7 +35,7 @@ class StepTwo extends Component {
                       variant="contained"
                       color="primary"
                       disabled>
-                        Next <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
+                        Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
                     </Button>
                   </Grid>
                 </Grid>
@@ -47,4 +47,4 @@ class StepTwo extends Component {
   }
 }
 
-export default StepTwo;
+export default StepThree;

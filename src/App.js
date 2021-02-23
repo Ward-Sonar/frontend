@@ -13,12 +13,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import StepOne from './pages/reporting-interface/StepOne';
 import StepTwo from './pages/reporting-interface/StepTwo';
+import StepThree from './pages/reporting-interface/StepThree';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 2
+      step: 3
     };
   }
 
@@ -38,6 +39,9 @@ class App extends Component {
               }
               {this.state.step == 2 &&
                 <StepTwo />
+              }
+              {this.state.step == 3 &&
+                <StepThree />
               }
           </Box>
           <Footer />
