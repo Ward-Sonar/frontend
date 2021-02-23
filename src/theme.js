@@ -28,6 +28,22 @@ const theme = createMuiTheme({
       secondary: 'rgba(0, 0, 0, 0.54)'
     }
   },
+  props: {
+    MuiTypography: {
+      variantMapping: {
+        h1: 'h1',
+        h2: 'h2',
+        h3: 'h3',
+        h4: 'h4',
+        h5: 'h5',
+        h6: 'h6',
+        subtitle1: 'p',
+        subtitle2: 'p',
+        body1: 'p',
+        body2: 'p',
+      },
+    },
+  },
   typography: {
     fontFamily: [
       'Open Sans',
@@ -70,6 +86,11 @@ const theme = createMuiTheme({
       fontWeight: 400,
       lineHeight: '2.625rem',
     },
+    subtitle1: {
+      fontSize: '1.25rem',
+      fontWeight: 700,
+      lineHeight: '1.875rem',
+    },
     body1: {
       fontSize: '1.25rem',
       lineHeight: '1.875rem',
@@ -103,6 +124,11 @@ const theme = createMuiTheme({
         width: 115,
         height: 2,
         margin: '2rem 0'
+      }
+    },
+    MuiTypography: {
+      gutterBottom: {
+        marginBottom: 30,
       }
     }
   },

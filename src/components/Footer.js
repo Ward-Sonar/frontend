@@ -14,7 +14,7 @@ class Header extends Component {
       <Box
         component="footer"
         bgcolor="common.white"
-        px={10}
+        px={6}
         py={8}>
         <Grid
           container
