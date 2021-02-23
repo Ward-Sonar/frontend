@@ -1,62 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 // Import app styling
 import theme from './theme';
 import './App.css';
 
-// Import Material UI
-import Box from '@material-ui/core/Box';
-
 // Import components
 import Header from './components/Header';
 import Footer from './components/Footer';
-import StepOne from './pages/reporting-interface/StepOne';
-import StepTwo from './pages/reporting-interface/StepTwo';
-import StepThree from './pages/reporting-interface/StepThree';
-import StepFour from './pages/reporting-interface/StepFour';
-import StepFive from './pages/reporting-interface/StepFive';
+import ReportingInterface from './pages/ReportingInterface';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      step: 1
-    };
-  }
-
-  render() {
-    return (
+function App() {
+  return (
+    <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
           <Header />
-          <Box
-            component="main"
-            bgcolor="background.default"
-            px={4}
-            pt={8}
-            pb={16}>
-              {this.state.step === 1 &&
-                <StepOne />
-              }
-              {this.state.step === 2 &&
-                <StepTwo />
-              }
-              {this.state.step === 3 &&
-                <StepThree />
-              }
-              {this.state.step === 4 &&
-                <StepFour />
-              }
-              {this.state.step === 5 &&
-                <StepFive />
-              }
-          </Box>
-          <Footer />
+          <Switch>
+            <Route path="/reporting-interface">
+              <ReportingInterface />
+              <Footer />
+            </Route>
+          </Switch>
         </div>
       </ThemeProvider>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;

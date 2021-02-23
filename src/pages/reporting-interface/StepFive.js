@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-
 class StepFour extends Component {
+  constructor(props) {
+    super(props);
+    this.handleStepChange = this.handleStepChange.bind(this);
+  }
+
+  handleStepChange(step) {
+    this.props.onStepChange(step);
+  }
+  
   render() {
     return (
       <div>
@@ -29,7 +37,28 @@ class StepFour extends Component {
               </Typography>
             </Grid>
         </Grid>
-        <div style={{ marginTop: 40 }}>
+          <Grid
+            container
+            justify="center"
+            alignItems="center">
+              <Grid item>
+                <Box
+                  mt={12}
+                  px={3}
+                  py={2}
+                  bgcolor="#FFF4D7"
+                  border={1}
+                  borderColor="common.gray"
+                  borderRadius={4}>
+                  <Typography
+                    variant="subtitle1"
+                    align="center">
+                    Please hand back to a staff member
+                  </Typography>
+                </Box>
+              </Grid>
+          </Grid>
+        <div style={{ marginTop: 80 }}>
           <Grid
             container
             justify="center"
@@ -39,7 +68,7 @@ class StepFour extends Component {
                   <Grid item>
                     <Button
                       variant="contained"
-                      color="secondary">
+                      color="gray">
                         Press to close
                     </Button>
                   </Grid>

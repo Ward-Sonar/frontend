@@ -8,6 +8,15 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CloseIcon from '@material-ui/icons/Close';
 
 class StepOne extends Component {
+  constructor(props) {
+    super(props);
+    this.handleStepChange = this.handleStepChange.bind(this);
+  }
+
+  handleStepChange(step) {
+    this.props.onStepChange(step);
+  }
+
   render() {
     return (
       <div>
@@ -53,10 +62,13 @@ class StepOne extends Component {
               <Grid item xs={10}>
                 <Grid container spacing={5}>
                   <Grid item>
-                    <Button variant="contained" color="primary">Start now <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} /></Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => this.handleStepChange(2)}>Start now <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} /></Button>
                   </Grid>
                   <Grid item>
-                    <Button variant="contained" color="gray">Not right now <CloseIcon style={{ marginLeft: 8, fontSize: 40 }} /></Button>
+                    <Button variant="contained" color="secondary">Not right now <CloseIcon style={{ marginLeft: 8, fontSize: 40 }} /></Button>
                   </Grid>
                 </Grid>
               </Grid>

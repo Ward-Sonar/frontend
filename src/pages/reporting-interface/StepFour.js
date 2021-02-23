@@ -7,6 +7,15 @@ import { Typography } from '@material-ui/core';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 class StepFour extends Component {
+  constructor(props) {
+    super(props);
+    this.handleStepChange = this.handleStepChange.bind(this);
+  }
+
+  handleStepChange(step) {
+    this.props.onStepChange(step);
+  }
+
   render() {
     return (
       <div>
@@ -34,7 +43,8 @@ class StepFour extends Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      disabled>
+                      disabled
+                      onClick={() => this.handleStepChange(5)}>
                         Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
                     </Button>
                   </Grid>
