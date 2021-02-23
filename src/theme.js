@@ -49,6 +49,9 @@ const theme = createMuiTheme({
     },
   },
   typography: {
+    allVariants: {
+      color: '#263238'
+    },
     fontFamily: [
       'Open Sans',
       'sans-serif',
@@ -135,6 +138,9 @@ const theme = createMuiTheme({
       }
     },
     MuiTypography: {
+      color: {
+        main: '#263238',
+      },
       gutterBottom: {
         marginBottom: 30,
       }
