@@ -68,7 +68,10 @@ class StepOne extends Component {
                       onClick={() => this.handleStepChange(2)}>Start now <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} /></Button>
                   </Grid>
                   <Grid item>
-                    <Button variant="contained" color="secondary">Not right now <CloseIcon style={{ marginLeft: 8, fontSize: 40 }} /></Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => this.handleStepChange(0)}>Not right now <CloseIcon style={{ marginLeft: 8, fontSize: 40 }} /></Button>
                   </Grid>
                 </Grid>
               </Grid>

@@ -12,7 +12,6 @@ import './App.css';
 
 // Import components
 import Header from './components/Header';
-import Footer from './components/Footer';
 import ReportingInterface from './pages/ReportingInterface';
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
           <Switch>
             <Route path="/reporting-interface">
               <ReportingInterface />
-              <Footer />
             </Route>
           </Switch>
         </div>
