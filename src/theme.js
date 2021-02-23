@@ -98,6 +98,13 @@ const theme = createMuiTheme({
         padding: '2rem 3rem'
       },
     },
+    MuiDivider: {
+      root: {
+        width: 115,
+        height: 2,
+        margin: '2rem 0'
+      }
+    }
   },
 });
 
