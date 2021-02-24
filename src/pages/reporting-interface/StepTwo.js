@@ -3,20 +3,33 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
-class StepTwo extends Component {
+class StepTwo extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selected: null,
+    }
     this.handleStepChange = this.handleStepChange.bind(this);
   }
+
+  handleAnswer = (event, selected) => {
+    this.setState({ selected }, () => {
+      this.props.onSetAnswer('answerOne', selected);
+    });
+  };
 
   handleStepChange(step) {
     this.props.onStepChange(step);
   }
 
   render() {
+    const { selected } = this.state;
+
     return (
       <div>
         <Grid
@@ -32,6 +45,36 @@ class StepTwo extends Component {
               </Typography>
             </Grid>
         </Grid>
+        <ToggleButtonGroup
+          value={selected}
+          exclusive
+          onChange={this.handleAnswer}
+          aria-label="How does the ward atmosphere feel to you today?"
+        >
+          <ToggleButton value={1} aria-label="Very calm">
+            <Typography variant="subtitle1">Very calm</Typography>
+          </ToggleButton>
+          <ToggleButton value={2} aria-label="Calm">
+            <Typography variant="subtitle1">Calm</Typography>
+          </ToggleButton>
+          <ToggleButton value={3} aria-label="Neither calm nor stormy">
+            <Typography variant="subtitle1">Neither calm nor stormy</Typography>
+          </ToggleButton>
+          <ToggleButton value={4} aria-label="Stormy">
+            <Typography variant="subtitle1">Stormy</Typography>
+          </ToggleButton>
+          <ToggleButton value={5} aria-label="Very stormy">
+            <Typography variant="subtitle1">Very stormy</Typography>
+          </ToggleButton>
+        </ToggleButtonGroup>
+        <div style={{
+          display: 'block',
+          width: '100%',
+          height: '13px',
+          marginTop: 32,
+          marginBottom: 64,
+          background: 'linear-gradient(90deg, rgba(255,211,71,1) 0%, rgba(196,196,196,0) 50%, rgba(137,141,141,1) 100%)',
+        }}></div>
         <div style={{ marginTop: 40 }}>
           <Grid
             container
@@ -43,7 +86,7 @@ class StepTwo extends Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      disabled
+                      disabled={!this.state.selected}
                       onClick={() => this.handleStepChange(3)}>
                         Next <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
                     </Button>

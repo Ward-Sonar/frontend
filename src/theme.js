@@ -29,7 +29,7 @@ const theme = createMuiTheme({
     },
     action: {
       disabledBackground: 'rgba(27,94,32,0.5)',
-      disabled: 'white'
+      disabled: '#ffffff'
     }
   },
   props: {
@@ -139,6 +139,29 @@ const theme = createMuiTheme({
         height: 2,
         margin: '2rem 0'
       }
+    },
+    MuiToggleButton: {
+      root: {
+        alignItems: 'flex-start',
+        justifyContent: 'left',
+        width: 170,
+        height: '100%',
+        padding: 16,
+        overflow: 'hidden',
+        backgroundColor: '#FFF',
+        borderWidth: 1,
+        borderColor: '#AFAFAF', //#898D8D
+        borderRadius: 4,
+        textAlign: 'left',
+        '&:hover': {
+          borderWidth: 3,
+          borderColor: '#898D8D',  
+        },
+        '&:selected': {
+          borderWidth: 3,
+          borderColor: '#898D8D',  
+        },
+      },
     },
     MuiTypography: {
       color: {
