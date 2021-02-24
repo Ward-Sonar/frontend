@@ -16,7 +16,7 @@ class ReportingInterface extends Component {
     super(props);
 
     this.state = {
-      step: 2,
+      step: 1,
       answerOne: null,
       answerTwo: null,
       answerThree: null,
@@ -66,7 +66,7 @@ class ReportingInterface extends Component {
               <StepThree onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} />
             }
             {this.state.step === 4 &&
-              <StepFour onStepChange={this.handleStepChange} />
+              <StepFour onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} />
             }
             {this.state.step === 5 &&
               <StepFive onStepChange={this.handleStepChange} />

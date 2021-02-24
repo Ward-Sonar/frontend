@@ -19,7 +19,7 @@ class StepThree extends Component {
 
   handleAnswer = (event, selected) => {
     this.setState({ selected }, () => {
-      this.props.onSetAnswer('answerOne', selected);
+      this.props.onSetAnswer('answerTwo', selected);
     });
   };
 

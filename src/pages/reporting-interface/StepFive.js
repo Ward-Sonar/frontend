@@ -68,7 +68,8 @@ class StepFour extends Component {
                   <Grid item>
                     <Button
                       variant="contained"
-                      color="gray">
+                      color="secondary"
+                      onClick={() => this.handleStepChange(1)}>
                         Press to close
                     </Button>
                   </Grid>

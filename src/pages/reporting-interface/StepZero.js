@@ -35,7 +35,7 @@ class StepZero extends Component {
           container
           justify="center"
           alignItems="center">
-          <Grid container xs={6} justify="center">
+          <Grid item xs={6} container justify="center">
             <Typography variant="h1" align="center" gutterBottom>
               Not right now
             </Typography>
