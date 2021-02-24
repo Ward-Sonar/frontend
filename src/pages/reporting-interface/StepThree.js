@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
 
+// Import Material UI components
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
-
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 class StepThree extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selected: null,
+    }
     this.handleStepChange = this.handleStepChange.bind(this);
   }
+
+  handleAnswer = (event, selected) => {
+    this.setState({ selected }, () => {
+      this.props.onSetAnswer('answerOne', selected);
+    });
+  };
 
   handleStepChange(step) {
     this.props.onStepChange(step);
   }
   
   render() {
+    const { selected } = this.state;
+
     return (
-      <div>
+      <div style={{ width: '100%' }}>
         <Grid
           container
           justify="center"
@@ -32,6 +45,26 @@ class StepThree extends Component {
               </Typography>
             </Grid>
         </Grid>
+        <Grid
+          container
+          justify="center">
+          <ToggleButtonGroup
+            value={selected}
+            exclusive
+            onChange={this.handleAnswer}
+            aria-label="How does the ward atmosphere feel to you today?"
+          >
+            <ToggleButton value={1} aria-label="Getting better">
+              <Typography variant="subtitle1">Getting better</Typography>
+            </ToggleButton>
+            <ToggleButton value={2} aria-label="The same">
+              <Typography variant="subtitle1">The same</Typography>
+            </ToggleButton>
+            <ToggleButton value={3} aria-label="Getting worse">
+              <Typography variant="subtitle1">Getting worse</Typography>
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Grid>
         <div style={{ marginTop: 40 }}>
           <Grid
             container
@@ -43,9 +76,9 @@ class StepThree extends Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      disabled
+                      disabled={!selected}
                       onClick={() => this.handleStepChange(4)}>
-                        Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
+                        Next <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
                     </Button>
                   </Grid>
                 </Grid>

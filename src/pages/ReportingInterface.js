@@ -49,7 +49,6 @@ class ReportingInterface extends Component {
             position: "relative",
             display: "flex",
             alignItems: "center",
-            width: "100%",
             minHeight: "calc(100vh - 178px)",
             padding: "2rem 2rem",
             boxSizing: "border-box",
@@ -64,7 +63,7 @@ class ReportingInterface extends Component {
               <StepTwo onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} />
             }
             {this.state.step === 3 &&
-              <StepThree onStepChange={this.handleStepChange} />
+              <StepThree onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} />
             }
             {this.state.step === 4 &&
               <StepFour onStepChange={this.handleStepChange} />
