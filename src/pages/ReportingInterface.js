@@ -25,18 +25,32 @@ class ReportingInterface extends Component {
 
     this.setAnswer = this.setAnswer.bind(this);
     this.handleStepChange = this.handleStepChange.bind(this);
+
+    // Check if the user is refreshing the page
+    window.onbeforeunload = this.checkReload.bind(this);
   }
 
   setAnswer(id, answer) {
     this.setState({
       [id]: answer
-    }, () => console.log(this.state));
+    });
   }
 
   handleStepChange(step) {
     this.setState({
       step: step,
     })
+  }
+
+  checkReload(evt) {
+    const message = 'Are you sure you want to leave?';
+    if (typeof evt == 'undefined') {
+      evt = window.event;
+    }
+    if (evt) {
+      evt.returnValue = message;
+    }
+    return message;
   }
 
   render() {
