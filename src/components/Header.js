@@ -27,7 +27,7 @@ class Header extends Component {
           <Grid item>
             <img src={Logo} alt="NHS: Leeds and York Partnership - NHS Foundation Trust" />
             <Typography variant="h4" align="right">
-              Ward Name
+              {process.env.REACT_APP_WARD_NAME}
             </Typography>
           </Grid>
         </Grid>
