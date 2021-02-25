@@ -146,22 +146,38 @@ const theme = createMuiTheme({
         justifyContent: 'left',
         width: 170,
         height: '100%',
+        margin: '0 28px',
         padding: 16,
         overflow: 'hidden',
         backgroundColor: '#FFF',
         borderWidth: 1,
-        borderColor: '#AFAFAF', //#898D8D
+        borderColor: 'v',
         borderRadius: 4,
         textAlign: 'left',
         '&:hover': {
-          borderWidth: 3,
-          borderColor: '#898D8D',  
-        },
-        '&:selected': {
-          borderWidth: 3,
-          borderColor: '#898D8D',  
+          padding: 14,
+          border: '3px solid #898D8D',
         },
       },
+      selected: {
+        padding: 14,
+        border: '3px solid #898D8D !important',
+      },
+    },
+    MuiToggleButtonGroup: {
+      root: {
+        display: 'flex',
+      },
+      groupedHorizontal: {
+        '&:not(:last-child), &:not(:first-child)': {
+          margin: '0 14px',
+          border: '1px solid #AFAFAF'
+        },
+        '&:hover': {
+          padding: 14,
+          border: '3px solid #898D8D',
+        },
+      }
     },
     MuiTypography: {
       color: {

@@ -54,13 +54,13 @@ class StepThree extends Component {
             onChange={this.handleAnswer}
             aria-label="How does the ward atmosphere feel to you today?"
           >
-            <ToggleButton value={1} aria-label="Getting better">
+            <ToggleButton value={-1} aria-label="Getting better">
               <Typography variant="subtitle1">Getting better</Typography>
             </ToggleButton>
-            <ToggleButton value={2} aria-label="The same">
+            <ToggleButton value={0} aria-label="The same">
               <Typography variant="subtitle1">The same</Typography>
             </ToggleButton>
-            <ToggleButton value={3} aria-label="Getting worse">
+            <ToggleButton value={1} aria-label="Getting worse">
               <Typography variant="subtitle1">Getting worse</Typography>
             </ToggleButton>
           </ToggleButtonGroup>
@@ -76,7 +76,7 @@ class StepThree extends Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      disabled={!selected}
+                      disabled={selected === null}
                       onClick={() => this.handleStepChange(4)}>
                         Next <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
                     </Button>

@@ -53,19 +53,19 @@ class StepFour extends Component {
             onChange={this.handleAnswer}
             aria-label="How does the ward atmosphere feel to you today?"
           >
-            <ToggleButton value={1} aria-label="The staff">
+            <ToggleButton value={'the-staff'} aria-label="The staff">
               <Typography variant="subtitle1">The staff</Typography>
             </ToggleButton>
-            <ToggleButton value={2} aria-label="The other patients">
+            <ToggleButton value={'the-other-patients'} aria-label="The other patients">
               <Typography variant="subtitle1">The other patients</Typography>
             </ToggleButton>
-            <ToggleButton value={3} aria-label="How I'm feeling">
+            <ToggleButton value={'how-im-feeling'} aria-label="How I'm feeling">
               <Typography variant="subtitle1">How I'm feeling</Typography>
             </ToggleButton>
-            <ToggleButton value={4} aria-label="The ward/environment">
-              <Typography variant="subtitle1">The ward/environment</Typography>
+            <ToggleButton value={'the-ward-environment'} aria-label="The ward/environment">
+              <Typography variant="subtitle1" style={{wordBreak: 'break-all'}}>The ward/environment</Typography>
             </ToggleButton>
-            <ToggleButton value={5} aria-label="Other">
+            <ToggleButton value={'other'} aria-label="Other">
               <Typography variant="subtitle1">Other</Typography>
             </ToggleButton>
           </ToggleButtonGroup>
@@ -81,7 +81,7 @@ class StepFour extends Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      disabled={!selected}
+                      disabled={selected === null}
                       onClick={() => this.handleStepChange(5)}>
                         Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
                     </Button>

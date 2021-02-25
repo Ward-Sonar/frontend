@@ -54,19 +54,19 @@ class StepTwo extends Component {
             onChange={this.handleAnswer}
             aria-label="How does the ward atmosphere feel to you today?"
           >
-            <ToggleButton value={1} aria-label="Very calm">
+            <ToggleButton value={-2} aria-label="Very calm">
               <Typography variant="subtitle1">Very calm</Typography>
             </ToggleButton>
-            <ToggleButton value={2} aria-label="Calm">
+            <ToggleButton value={-1} aria-label="Calm">
               <Typography variant="subtitle1">Calm</Typography>
             </ToggleButton>
-            <ToggleButton value={3} aria-label="Neither calm nor stormy">
+            <ToggleButton value={0} aria-label="Neither calm nor stormy">
               <Typography variant="subtitle1">Neither calm nor stormy</Typography>
             </ToggleButton>
-            <ToggleButton value={4} aria-label="Stormy">
+            <ToggleButton value={1} aria-label="Stormy">
               <Typography variant="subtitle1">Stormy</Typography>
             </ToggleButton>
-            <ToggleButton value={5} aria-label="Very stormy">
+            <ToggleButton value={2} aria-label="Very stormy">
               <Typography variant="subtitle1">Very stormy</Typography>
             </ToggleButton>
           </ToggleButtonGroup>
@@ -90,7 +90,7 @@ class StepTwo extends Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      disabled={!selected}
+                      disabled={selected === null}
                       onClick={() => this.handleStepChange(3)}>
                         Next <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
                     </Button>
