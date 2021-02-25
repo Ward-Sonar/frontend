@@ -12,7 +12,7 @@ class StepTwo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: null,
+      selected: [],
     }
     this.handleStepChange = this.handleStepChange.bind(this);
   }
@@ -90,7 +90,7 @@ class StepTwo extends Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      disabled={selected === null}
+                      disabled={selected.length === 0}
                       onClick={() => this.handleStepChange(3)}>
                         Next <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
                     </Button>

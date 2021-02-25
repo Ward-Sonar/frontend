@@ -140,6 +140,22 @@ const theme = createMuiTheme({
         margin: '2rem 0'
       }
     },
+    MuiFormControl: {
+      root: {
+        minWidth: '100%',
+      }
+    },
+    MuiInputBase: {
+      root: {
+        backgroundColor: '#ffffff',
+        border: '1px solid #FAF7F7'
+      },
+      inputMultiline: {
+        width: 520,
+        height: '96px !important',
+        padding: 16,
+      }
+    },
     MuiToggleButton: {
       root: {
         alignItems: 'flex-start',
@@ -158,19 +174,21 @@ const theme = createMuiTheme({
           padding: 14,
           border: '3px solid #898D8D',
         },
-      },
-      selected: {
-        padding: 14,
-        border: '3px solid #898D8D !important',
+        '&$selected': {
+          padding: 14,
+          border: '3px solid #898D8D !important',
+        },
       },
     },
     MuiToggleButtonGroup: {
       root: {
         display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
       },
       groupedHorizontal: {
         '&:not(:last-child), &:not(:first-child)': {
-          margin: '0 14px',
+          margin: '10px !important',
           border: '1px solid #AFAFAF'
         },
         '&:hover': {

@@ -17,10 +17,10 @@ class ReportingInterface extends Component {
 
     this.state = {
       step: 1,
-      answerOne: null,
-      answerTwo: null,
-      answerThree: null,
-      answerDetail: null,
+      answerOne: [],
+      answerTwo: [],
+      answerThree: [],
+      answerThreeDetail: '',
     };
 
     this.setAnswer = this.setAnswer.bind(this);
@@ -30,7 +30,7 @@ class ReportingInterface extends Component {
   setAnswer(id, answer) {
     this.setState({
       [id]: answer
-    });
+    }, () => console.log(this.state));
   }
 
   handleStepChange(step) {

@@ -5,13 +5,15 @@ import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import TextField from '@material-ui/core/TextField';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 class StepFour extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: null,
+      selected: [],
+      detail: '',
     }
     this.handleStepChange = this.handleStepChange.bind(this);
   }
@@ -22,12 +24,20 @@ class StepFour extends Component {
     });
   };
 
+  handleDetail = (event) => {
+    if(event.target.value.length <= 140) {
+      this.setState({ detail: event.target.value }, () => {
+        this.props.onSetAnswer('answerThreeDetail', event.target.value);
+      });
+    }
+  };
+
   handleStepChange(step) {
     this.props.onStepChange(step);
   }
 
   render() {
-    const { selected } = this.state;
+    const { selected, detail } = this.state;
 
     return (
       <div>
@@ -49,8 +59,8 @@ class StepFour extends Component {
           justify="center">
           <ToggleButtonGroup
             value={selected}
-            exclusive
             onChange={this.handleAnswer}
+            required
             aria-label="How does the ward atmosphere feel to you today?"
           >
             <ToggleButton value={'the-staff'} aria-label="The staff">
@@ -70,6 +80,41 @@ class StepFour extends Component {
             </ToggleButton>
           </ToggleButtonGroup>
         </Grid>
+        {selected.length > 0 &&
+          <div style={{
+            marginTop: 80,
+            marginBottom: 80,
+            }}>
+            <Grid
+            container
+            alignContent="center"
+            direction="column"
+            spacing={2}
+            >
+              <Grid item>
+                <Typography variant="h3" align="center">
+                  Please describe in a few words
+                </Typography>
+              </Grid>
+              <Grid item>
+                <TextField
+                  id="detail"
+                  aria-label="Please describe in a few words"
+                  multiline
+                  rowsMax={4}
+                  placeholder="Type here"
+                  value={detail}
+                  onChange={this.handleDetail}
+                />
+              </Grid>
+              <Grid item>
+                <Typography variant="body1">
+                  You can use up to 140 characters
+                </Typography>
+              </Grid>
+            </Grid>
+          </div>
+        }
         <div style={{ marginTop: 40 }}>
           <Grid
             container
@@ -81,7 +126,7 @@ class StepFour extends Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      disabled={selected === null}
+                      disabled={!selected.length}
                       onClick={() => this.handleStepChange(5)}>
                         Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
                     </Button>
