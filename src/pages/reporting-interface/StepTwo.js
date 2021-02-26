@@ -8,6 +8,13 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
+// Import illustrations
+import { ReactComponent as Sun } from '../../assets/sun.svg';
+import { ReactComponent as SunCloudGrey } from '../../assets/sun-cloud-grey.svg';
+import { ReactComponent as CloudGrey } from '../../assets/cloud-grey.svg';
+import { ReactComponent as DarkCloud } from '../../assets/dark-cloud.svg';
+import { ReactComponent as DarkCloudStorm } from '../../assets/dark-cloud-storm.svg';
+
 class StepTwo extends Component {
   constructor(props) {
     super(props);
@@ -55,19 +62,44 @@ class StepTwo extends Component {
             aria-label="How does the ward atmosphere feel to you today?"
           >
             <ToggleButton value={-2} aria-label="Very calm">
-              <Typography variant="subtitle1">Very calm</Typography>
+              <div className="custom-toggle-button-icon">
+                <Sun />
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">Very calm</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={-1} aria-label="Calm">
-              <Typography variant="subtitle1">Calm</Typography>
+              <div className="custom-toggle-button-icon">
+                <SunCloudGrey />
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">Calm</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={0} aria-label="Neither calm nor stormy">
-              <Typography variant="subtitle1">Neither calm nor stormy</Typography>
+              <div className="custom-toggle-button-icon">
+                <CloudGrey />
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">Neither calm nor stormy</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={1} aria-label="Stormy">
-              <Typography variant="subtitle1">Stormy</Typography>
+              <div className="custom-toggle-button-icon">
+                <DarkCloud />
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">Stormy</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={2} aria-label="Very stormy">
-              <Typography variant="subtitle1">Very stormy</Typography>
+              <div className="custom-toggle-button-icon">
+                <DarkCloudStorm />
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">Very stormy</Typography>
+              </div>
             </ToggleButton>
           </ToggleButtonGroup>
         </Grid>

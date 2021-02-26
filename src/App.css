@@ -1,3 +1,22 @@
-.App {
-  
+/* Custom toggle buttons */
+.custom-toggle-button-icon {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.custom-toggle-button-icon svg {
+  max-width: 100%;
+}
+
+.custom-toggle-button-label {
+  width: 100%;
+  margin-top: auto;
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: #fff;
 }

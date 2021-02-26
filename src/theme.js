@@ -158,11 +158,7 @@ const theme = createMuiTheme({
     },
     MuiToggleButton: {
       root: {
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'left',
         width: 170,
-        height: '100%',
         margin: '0 28px',
         padding: 0,
         overflow: 'hidden',
@@ -174,12 +170,27 @@ const theme = createMuiTheme({
         '&:hover': {
           padding: 0,
           border: '3px solid #898D8D',
+          backgroundColor: '#D3E0EC',
+        },
+        '&:focus': {
+          padding: 0,
+          border: '3px solid #898D8D',
+          backgroundColor: '#D3E0EC',
         },
         '&$selected': {
+          backgroundColor: '#D3E0EC',
           padding: 0,
           border: '3px solid #898D8D !important',
         },
       },
+      label: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'space-between',
+        justifyContent: 'left',
+        flexWrap: 'wrap',
+        height: '100%',
+      }
     },
     MuiToggleButtonGroup: {
       root: {
