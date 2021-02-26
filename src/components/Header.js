@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
 
+// Import Material UI components
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
@@ -11,27 +16,36 @@ import Logo from './../assets/nhs-leeds-and-yorkshire-partnership.png';
 class Header extends Component {
   render() {
     return (
-      <Box
-        component="header"
-        bgcolor="common.white"
-        px={6}
-        py={4}>
-        <Grid
-          container
-          justify="space-between"
-          alignItems="center">
-          <Grid item>
-            <NetworkStatus />
-          </Grid>
+      <Router>
+        <Box
+          component="header"
+          bgcolor="common.white"
+          px={6}
+          py={4}>
+          <Grid
+            container
+            justify="space-between"
+            alignItems="center">
+            <Grid item>
+              <Route exact path="/" component={NetworkStatus} />
+              <Route exact path="/dashboard">
+                <Typography variant="h4" align="right">
+                  {process.env.REACT_APP_WARD_NAME}
+                </Typography>
+              </Route>
+            </Grid>
 
-          <Grid item>
-            <img src={Logo} alt="NHS: Leeds and York Partnership - NHS Foundation Trust" />
-            <Typography variant="h4" align="right">
-              {process.env.REACT_APP_WARD_NAME}
-            </Typography>
+            <Grid item>
+              <img src={Logo} alt="NHS: Leeds and York Partnership - NHS Foundation Trust" />
+              <Route exact path="/">
+                <Typography variant="h4" align="right">
+                  {process.env.REACT_APP_WARD_NAME}
+                </Typography>
+              </Route>
+            </Grid>
           </Grid>
-        </Grid>
-      </Box>
+        </Box>
+      </Router>
     );
   }
 }

@@ -54,7 +54,7 @@ class StepOne extends Component {
             </Typography>
           </Grid>
         </Grid>
-        <div style={{ marginTop: 40 }}>
+        <div style={{ marginTop: 96 }}>
           <Grid
             container
             justify="center"

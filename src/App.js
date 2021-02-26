@@ -13,6 +13,7 @@ import './App.css';
 // Import components
 import Header from './components/Header';
 import ReportingInterface from './pages/ReportingInterface';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -21,7 +22,10 @@ function App() {
         <div className="App">
           <Header />
           <Switch>
-            <Route path="/reporting-interface">
+            <Route path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route path="/">
               <ReportingInterface />
             </Route>
           </Switch>
