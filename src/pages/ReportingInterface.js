@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import API from '../api';
 
+// Import Material UI components;
 import Box from '@material-ui/core/Box';
 
 // Import components
@@ -17,10 +19,11 @@ class ReportingInterface extends Component {
 
     this.state = {
       step: 1,
-      answerOne: [],
-      answerTwo: [],
-      answerThree: [],
-      answerThreeDetail: '',
+      atmosphere: '',
+      direction: '',
+      causes: [],
+      comment: '',
+      abandoned: false,
     };
 
     this.setAnswer = this.setAnswer.bind(this);
@@ -33,13 +36,19 @@ class ReportingInterface extends Component {
   setAnswer(id, answer) {
     this.setState({
       [id]: answer
+    }, () => {
+      console.log(this.state);
     });
   }
 
   handleStepChange(step) {
-    this.setState({
-      step: step,
-    })
+    if(step === 5) {
+      this.handleSubmission(step);
+    } else {
+      this.setState({
+        step: step,
+      });
+    }
   }
 
   checkReload(evt) {
@@ -51,6 +60,28 @@ class ReportingInterface extends Component {
       evt.returnValue = message;
     }
     return message;
+  }
+
+  handleSubmission(step) {
+    API.post('/submission', {
+      "data": {
+        "type": "string",
+        "attributes": {
+          "atmosphere": this.state.atmosphere,
+          "direction": this.state.direction,
+          "comment": this.state.comment,
+          "abandoned": this.state.abandoned
+        },
+        "relationships": {
+          "causes": this.state.causes
+        }
+      }
+    })
+    .then(res => {
+      this.setState({
+        step: step,
+      });
+    });
   }
 
   render() {
@@ -80,7 +111,7 @@ class ReportingInterface extends Component {
               <StepThree onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} />
             }
             {this.state.step === 4 &&
-              <StepFour onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} />
+              <StepFour onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} howDoesTheWardFeel={this.state.answerOne} />
             }
             {this.state.step === 5 &&
               <StepFive onStepChange={this.handleStepChange} />
