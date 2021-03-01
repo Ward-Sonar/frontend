@@ -8,6 +8,11 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
+// Import illustrations
+import { ReactComponent as ArrowUpYellow } from '../../assets/arrow-up-yellow.svg';
+import { ReactComponent as NeutralDot } from '../../assets/neutral-dot.svg';
+import { ReactComponent as ArrowDownGrey } from '../../assets/arrow-down-grey.svg';
+
 class StepThree extends Component {
   constructor(props) {
     super(props);
@@ -55,13 +60,28 @@ class StepThree extends Component {
             aria-label="How does the ward atmosphere feel to you today?"
           >
             <ToggleButton value={-1} aria-label="Getting better">
-              <Typography variant="subtitle1">Getting better</Typography>
+              <div className="custom-toggle-button-icon">
+                <ArrowUpYellow />
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">Getting better</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={0} aria-label="The same">
-              <Typography variant="subtitle1">The same</Typography>
+              <div className="custom-toggle-button-icon">
+                <NeutralDot />
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">The same</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={1} aria-label="Getting worse">
-              <Typography variant="subtitle1">Getting worse</Typography>
+              <div className="custom-toggle-button-icon">
+                <ArrowDownGrey />
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">Getting worse</Typography>
+              </div>
             </ToggleButton>
           </ToggleButtonGroup>
         </Grid>

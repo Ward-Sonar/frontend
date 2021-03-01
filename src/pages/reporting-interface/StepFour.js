@@ -64,19 +64,44 @@ class StepFour extends Component {
             aria-label="How does the ward atmosphere feel to you today?"
           >
             <ToggleButton value={'the-staff'} aria-label="The staff">
-              <Typography variant="subtitle1">The staff</Typography>
+              <div className="custom-toggle-button-icon">
+                
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">The staff</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={'the-other-patients'} aria-label="The other patients">
-              <Typography variant="subtitle1">The other patients</Typography>
+              <div className="custom-toggle-button-icon">
+                
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">The other patients</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={'how-im-feeling'} aria-label="How I'm feeling">
-              <Typography variant="subtitle1">How I'm feeling</Typography>
+              <div className="custom-toggle-button-icon">
+                
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">How I'm feeling</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={'the-ward-environment'} aria-label="The ward/environment">
-              <Typography variant="subtitle1" style={{wordBreak: 'break-all'}}>The ward/environment</Typography>
+              <div className="custom-toggle-button-icon">
+                
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1" style={{wordBreak: 'break-all'}}>The ward/environment</Typography>
+              </div>
             </ToggleButton>
             <ToggleButton value={'other'} aria-label="Other">
+              <div className="custom-toggle-button-icon">
+                
+              </div>
+              <div className="custom-toggle-button-label">
               <Typography variant="subtitle1">Other</Typography>
+              </div>
             </ToggleButton>
           </ToggleButtonGroup>
         </Grid>
