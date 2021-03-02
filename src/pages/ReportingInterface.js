@@ -26,6 +26,8 @@ class ReportingInterface extends Component {
       abandoned: false,
     };
 
+    this.baseState = this.state;
+
     this.setAnswer = this.setAnswer.bind(this);
     this.handleStepChange = this.handleStepChange.bind(this);
 
@@ -36,19 +38,24 @@ class ReportingInterface extends Component {
   setAnswer(id, answer) {
     this.setState({
       [id]: answer
-    }, () => {
-      console.log(this.state);
     });
   }
 
   handleStepChange(step) {
-    if(step === 5) {
+    if(step === 0) {
+      this.setState({
+        abandoned: true
+      }, () => {
+        this.handleSubmission(step);
+      });
+    } else if(step === 5) {
       this.handleSubmission(step);
     } else {
       this.setState({
         step: step,
       });
     }
+    console.log(this.state);
   }
 
   checkReload(evt) {
@@ -77,9 +84,14 @@ class ReportingInterface extends Component {
         }
       }
     })
-    .then(res => {
+    .then(() => {
       this.setState({
         step: step,
+        atmosphere: '',
+        direction: '',
+        causes: [],
+        comment: '',
+        abandoned: false,
       });
     });
   }
