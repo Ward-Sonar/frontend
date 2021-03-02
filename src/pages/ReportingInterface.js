@@ -55,7 +55,6 @@ class ReportingInterface extends Component {
         step: step,
       });
     }
-    console.log(this.state);
   }
 
   checkReload(evt) {

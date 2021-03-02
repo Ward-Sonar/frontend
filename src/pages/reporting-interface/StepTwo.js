@@ -56,6 +56,9 @@ class StepTwo extends Component {
           container
           justify="center">
           <ToggleButtonGroup
+            style={{
+              gridTemplateColumns: 'repeat(5, 1fr)',
+            }}
             value={selected}
             exclusive
             onChange={this.handleAnswer}

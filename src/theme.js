@@ -158,7 +158,8 @@ const theme = createMuiTheme({
     },
     MuiToggleButton: {
       root: {
-        width: 170,
+        width: '100%',
+        maxWidth: 170,
         margin: '0 28px',
         padding: 0,
         overflow: 'hidden',
@@ -194,14 +195,17 @@ const theme = createMuiTheme({
     },
     MuiToggleButtonGroup: {
       root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gridGap: 18,
       },
       groupedHorizontal: {
         '&:not(:last-child), &:not(:first-child)': {
-          margin: '10px !important',
+          margin: '0 !important',
           border: '1px solid #AFAFAF'
+        },
+        '&:last-child:nth-child(3n - 2)': {
+          gridColumnEnd: 3
         },
         '&:hover': {
           padding: 0,
