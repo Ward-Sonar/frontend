@@ -18,20 +18,20 @@ class Dashboard extends Component {
           style={{            
             position: "relative",
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-end",
             minHeight: "calc(100vh - 217px)",
-            padding: "2rem 2rem",
+            padding: "2rem 2rem 0 2rem",
             boxSizing: "border-box",
           }}>
           <Grid
             container
             justify="center">
             <Grid item xs={8}>
-              <Typography variant="h1" align="center">
+              <Typography variant="h1" align="center" gutterBottom>
                 How does the ward atmosphere feel to you today?
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} style={{marginTop: 'auto'}}>
               <AtmosphereDial />
             </Grid>
           </Grid>
