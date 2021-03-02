@@ -43,14 +43,14 @@ class StepTwo extends Component {
           container
           justify="center"
           alignItems="center">
-            <Grid item xs={10}>
-              <Typography variant="h1" align="center" gutterBottom>
-                How does the ward atmosphere feel to you today?
-              </Typography>
-              <Typography variant="h4" align="center" gutterBottom>
-                You can only make 1 selection
-              </Typography>
-            </Grid>
+          <Grid item xs>
+            <Typography variant="h1" align="center" gutterBottom>
+              How does the ward atmosphere feel to you today?
+            </Typography>
+            <Typography variant="h4" align="center" gutterBottom>
+              You can only make 1 selection
+            </Typography>
+          </Grid>
         </Grid>
         <Grid
           container

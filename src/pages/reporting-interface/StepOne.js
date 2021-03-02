@@ -24,7 +24,7 @@ class StepOne extends Component {
           container
           justify="center"
           alignItems="center">
-          <Grid item xs={10}>
+          <Grid item xs>
             <Typography variant="h1" gutterBottom>
               Reporting interface
             </Typography>
@@ -57,9 +57,8 @@ class StepOne extends Component {
         <div style={{ marginTop: 96 }}>
           <Grid
             container
-            justify="center"
             alignItems="center">
-              <Grid item xs={10}>
+              <Grid item>
                 <Grid container spacing={5}>
                   <Grid item>
                     <Button

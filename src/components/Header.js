@@ -25,8 +25,9 @@ class Header extends Component {
           <Grid
             container
             justify="space-between"
-            alignItems="center">
-            <Grid item>
+            alignItems="center"
+            spacing={4}>
+            <Grid item xs>
               <Route exact path="/" component={NetworkStatus} />
               <Route exact path="/dashboard">
                 <Typography variant="h4" align="right">
@@ -35,7 +36,12 @@ class Header extends Component {
               </Route>
             </Grid>
 
-            <Grid item>
+            <Grid
+              item
+              xs
+              container
+              justify="flex-end"
+              alignItems="center">
               <img src={Logo} alt="NHS: Leeds and York Partnership - NHS Foundation Trust" />
               <Route exact path="/">
                 <Typography variant="h4" align="right">

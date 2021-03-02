@@ -95,7 +95,7 @@ class ReportingInterface extends Component {
             display: "flex",
             alignItems: "center",
             minHeight: "calc(100vh - 178px)",
-            padding: "2rem 2rem",
+            padding: "3rem",
             boxSizing: "border-box",
           }}>
             {this.state.step === 0 &&  

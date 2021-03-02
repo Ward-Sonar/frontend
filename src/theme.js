@@ -130,7 +130,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiButton: {
       root: {
-        padding: '2rem 3rem',
+        padding: '1.5rem 2rem',
       },
     },
     MuiDivider: {

@@ -23,7 +23,7 @@ class NetworkStatus extends Component {
         variant="outlined">
         <Grid
           container
-          style={{ height: "111px" }}
+          style={{ minHeight: "111px" }}
           spacing={2}
           justify="space-between"
           alignItems="center">
