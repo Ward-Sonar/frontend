@@ -23,8 +23,14 @@ if ! command -v aws &> /dev/null; then
     unzip awscliv2.zip -d aws-tmp
     sudo ./aws-tmp/aws/install
     echo `aws --version`
-    if [ ! -z "${AWS_IAM_ROLE_ARN}" ]; then
+
+    rm -r aws-tmp
+    rm awscliv2.zip
+fi
+
+if [ ! -z "${AWS_IAM_ROLE_ARN}" ]; then
         mkdir -p ~/.aws
+        rm -f ~/.aws/config
         cat <<EOF > ~/.aws/config
 [default]
     aws_access_key_id=$AWS_ACCESS_KEY_ID
@@ -34,9 +40,6 @@ if ! command -v aws &> /dev/null; then
     role_arn=$AWS_IAM_ROLE_ARN
     source_profile=default
 EOF
-    fi
-    rm -r aws-tmp
-    rm awscliv2.zip
 fi
 
 # Get the .env file.
