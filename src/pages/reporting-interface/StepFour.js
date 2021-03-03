@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Detector } from 'react-detect-offline';
 
+// Import Material UI components
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
@@ -164,13 +166,26 @@ class StepFour extends Component {
               <Grid item>
                 <Grid container spacing={5}>
                   <Grid item>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      disabled={!selected.length}
-                      onClick={() => this.handleStepChange(5)}>
-                        Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
-                    </Button>
+                    <Detector
+                      polling={{url: process.env.REACT_APP_API_URL}}
+                      render={({ online }) => (online ? (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          disabled={!selected.length}
+                          onClick={() => this.handleStepChange(5)}>
+                            Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          disabled={!selected.length}
+                          onClick={() => this.handleStepChange(-1)}>
+                            Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
+                        </Button>
+                      ))}
+                    />
                   </Grid>
                 </Grid>
               </Grid>

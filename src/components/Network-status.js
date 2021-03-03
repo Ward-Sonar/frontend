@@ -29,6 +29,7 @@ class NetworkStatus extends Component {
           alignItems="center">
           <Grid item>
             <Detector
+              polling={{url: process.env.REACT_APP_API_URL}}
               render={({ online }) => (online ? <OnlineIndicator /> : <OfflineIndicator />)}
             />
           </Grid>
@@ -36,6 +37,7 @@ class NetworkStatus extends Component {
           <Grid item xs>
             <Typography variant="h4">
               <Detector
+                polling={{url: process.env.REACT_APP_API_URL}}
                 render={({ online }) => (
                   <div>
                     Wifi {online ? "Online" : "Offline"}
@@ -45,6 +47,7 @@ class NetworkStatus extends Component {
             </Typography>
             <Typography variant="body2" color="textSecondary">
               <Detector
+                polling={{url: process.env.REACT_APP_API_URL}}
                 render={({ online }) => (
                   <div>
                     You can make a submission {!online && "but can't submit until you're connected"}

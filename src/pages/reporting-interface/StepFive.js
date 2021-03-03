@@ -37,27 +37,27 @@ class StepFour extends Component {
               </Typography>
             </Grid>
         </Grid>
-          <Grid
-            container
-            justify="center"
-            alignItems="center">
-              <Grid item>
-                <Box
-                  mt={12}
-                  px={3}
-                  py={2}
-                  bgcolor="#FFF4D7"
-                  border={1}
-                  borderColor="common.gray"
-                  borderRadius={4}>
-                  <Typography
-                    variant="subtitle1"
-                    align="center">
-                    Please hand back to a staff member
-                  </Typography>
-                </Box>
-              </Grid>
-          </Grid>
+        <Grid
+          container
+          justify="center"
+          alignItems="center">
+            <Grid item>
+              <Box
+                mt={12}
+                px={3}
+                py={2}
+                bgcolor="#FFF4D7"
+                border={1}
+                borderColor="common.gray"
+                borderRadius={4}>
+                <Typography
+                  variant="subtitle1"
+                  align="center">
+                  Please hand back to a staff member
+                </Typography>
+              </Box>
+            </Grid>
+        </Grid>
         <div style={{ marginTop: 80 }}>
           <Grid
             container

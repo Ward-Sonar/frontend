@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 
 // Import components
 import Footer from '../components/Footer';
+import StepOffline from './reporting-interface/StepOffline';
 import StepZero from './reporting-interface/StepZero';
 import StepOne from './reporting-interface/StepOne';
 import StepTwo from './reporting-interface/StepTwo';
@@ -109,6 +110,9 @@ class ReportingInterface extends Component {
             padding: "3rem",
             boxSizing: "border-box",
           }}>
+            {this.state.step === -1 &&  
+              <StepOffline onStepChange={this.handleStepChange} />
+            }
             {this.state.step === 0 &&  
               <StepZero onStepChange={this.handleStepChange} />
             }
