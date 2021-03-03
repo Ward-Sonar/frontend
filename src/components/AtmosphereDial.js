@@ -55,6 +55,7 @@ class AtmosphereDial extends Component {
       }, () => {
         this.setRotation();
       });
+      this.props.setRefreshTime(res.data.data.attributes.datetime);
     });
   }
 

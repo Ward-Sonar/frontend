@@ -7,8 +7,24 @@ import Typography from '@material-ui/core/Typography';
 
 // Import components
 import AtmosphereDial from '../components/AtmosphereDial';
+import Timestamp from 'react-timestamp';
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      refreshTime: null,
+    }
+    this.setRefreshTime = this.setRefreshTime.bind(this);
+  }
+
+  setRefreshTime(time) {
+    this.setState({
+      refreshTime: time
+    });
+  }
+
   render() {
     return (
       <div>
@@ -32,17 +48,19 @@ class Dashboard extends Component {
               </Typography>
             </Grid>
             <Grid item xs={12} style={{marginTop: 'auto'}}>
-              <AtmosphereDial />
+              <AtmosphereDial setRefreshTime={this.setRefreshTime} />
             </Grid>
           </Grid>
         </Box>
-        <Box
-          component="footer"
-          py={5}>
-          <Typography variant="body1" align="center">
-            Last refreshed: less than a minutes ago
-          </Typography>
-        </Box>
+        {this.state.refreshTime &&
+          <Box
+            component="footer"
+            py={5}>
+            <Typography variant="body1" align="center">
+              Last refreshed: <Timestamp date={this.state.refreshTime} />
+            </Typography>
+          </Box>
+        }
       </div>
     )
   }
