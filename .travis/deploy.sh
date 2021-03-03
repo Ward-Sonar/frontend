@@ -18,20 +18,20 @@ ENV_SECRET_ID=".env.frontend.${ENVIRONMENT}"
 # Install AWS-CLI
 if ! command -v aws &> /dev/null; then
     echo "Installing AWS CLI..."
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    rm -rf ./aws-tmp
-    unzip awscliv2.zip -d aws-tmp
-    sudo ./aws-tmp/aws/install
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$HOME/awscliv2.zip"
+    rm -rf ${HOME}/aws-tmp
+    unzip ${HOME}/awscliv2.zip -d ${HOME}/aws-tmp
+    sudo ${HOME}/aws-tmp/aws/install
     echo `aws --version`
 
-    rm -r aws-tmp
-    rm awscliv2.zip
+    rm -r ${HOME}/aws-tmp
+    rm ${HOME}/awscliv2.zip
 fi
 
 if [ ! -z "${AWS_IAM_ROLE_ARN}" ]; then
-        mkdir -p ~/.aws
-        rm -f ~/.aws/config
-        cat <<EOF > ~/.aws/config
+        mkdir -p ${HOME}/.aws
+        rm -f ${HOME}/.aws/config
+        cat <<EOF > $HOME/.aws/config
 [default]
     aws_access_key_id=$AWS_ACCESS_KEY_ID
     aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
