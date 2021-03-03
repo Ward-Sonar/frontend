@@ -40,7 +40,7 @@ class Dashboard extends Component {
           component="footer"
           py={5}>
           <Typography variant="body1" align="center">
-            Last refreshed: 3 minutes ago
+            Last refreshed: less than a minutes ago
           </Typography>
         </Box>
       </div>

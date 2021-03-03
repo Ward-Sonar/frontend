@@ -30,7 +30,7 @@ class Header extends Component {
             <Grid item xs>
               <Route exact path="/" component={NetworkStatus} />
               <Route exact path="/dashboard">
-                <Typography variant="h4" align="right">
+                <Typography variant="h4" align="left">
                   {process.env.REACT_APP_WARD_NAME}
                 </Typography>
               </Route>
