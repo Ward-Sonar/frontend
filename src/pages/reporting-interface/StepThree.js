@@ -61,6 +61,7 @@ class StepThree extends Component {
             exclusive
             onChange={this.handleAnswer}
             aria-label="How does the ward atmosphere feel to you today?"
+            style={{width: '100%'}}
           >
             <ToggleButton value={-1} aria-label="Getting better">
               <div className="custom-toggle-button-icon">

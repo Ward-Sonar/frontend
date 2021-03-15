@@ -54,12 +54,9 @@ class StepTwo extends Component {
         </Grid>
         <Grid
           container
-          justify="center">
+          justify="center"
+          style={{position: "relative"}}>
           <ToggleButtonGroup
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(5, 1fr)',
-            }}
             value={selected}
             exclusive
             onChange={this.handleAnswer}
@@ -106,15 +103,8 @@ class StepTwo extends Component {
               </div>
             </ToggleButton>
           </ToggleButtonGroup>
+          <div className="gradient-bar"></div>
         </Grid>
-        <div style={{
-          display: 'block',
-          width: '100%',
-          height: '13px',
-          marginTop: 32,
-          marginBottom: 64,
-          background: 'linear-gradient(90deg, rgba(255,211,71,1) 0%, rgba(196,196,196,0) 50%, rgba(137,141,141,1) 100%)',
-        }}></div>
         <div style={{ marginTop: 40 }}>
           <Grid
             container

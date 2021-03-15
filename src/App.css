@@ -20,3 +20,24 @@
   box-sizing: border-box;
   background-color: #fff;
 }
+
+/* Gradient Bar */
+.gradient-bar {
+  display: block;
+  width: calc(100% - 40px);
+  height: 13px;
+  margin: 32px 20px 64px 20px;
+  background: linear-gradient(90deg, rgba(255,211,71,1) 0%, rgba(196,196,196,0) 50%, rgba(137,141,141,1) 100%);
+}
+
+@media screen and (max-width: 768px) {
+  .gradient-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 13px;
+    height: calc(100% - 24px);
+    margin: 12px 20px 64px 20px;
+    background: linear-gradient(180deg, rgba(255,211,71,1) 0%, rgba(196,196,196,0) 50%, rgba(137,141,141,1) 100%);
+  }
+}

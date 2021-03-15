@@ -196,13 +196,14 @@ const theme = createMuiTheme({
     },
     MuiToggleButtonGroup: {
       root: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gridGap: 18,
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        width: '100%',
       },
       groupedHorizontal: {
         '&:not(:last-child), &:not(:first-child)': {
-          margin: '0 !important',
+          margin: '12px 8px !important',
           border: '1px solid #AFAFAF'
         },
         '&:last-child:nth-child(3n - 2)': {
