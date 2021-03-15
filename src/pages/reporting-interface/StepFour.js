@@ -19,11 +19,10 @@ class StepFour extends Component {
     }
     this.handleStepChange = this.handleStepChange.bind(this);
   }
+  
 
   handleAnswer = (event, selected) => {
-    this.setState({ selected }, () => {
-      this.props.onSetAnswer('causes', selected);
-    });
+    this.setState({ selected: [selected] }, this.props.onSetAnswer('causes', selected));
   };
 
   handleDetail = (event) => {

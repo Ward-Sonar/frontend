@@ -25,9 +25,9 @@ class StepTwo extends Component {
   }
 
   handleAnswer = (event, selected) => {
-    this.setState({ selected }, () => {
-      this.props.onSetAnswer('atmosphere', selected);
-    });
+    this.setState({
+      selected: [selected]
+    }, this.props.onSetAnswer('atmosphere', selected));
   };
 
   handleStepChange(step) {
