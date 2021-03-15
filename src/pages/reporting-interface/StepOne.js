@@ -28,29 +28,32 @@ class StepOne extends Component {
             <Typography variant="h1" gutterBottom>
               Reporting interface
             </Typography>
-            <Typography variant="body1" gutterBottom>
-              We know that sometimes on wards patients don’t feel safe. We are trying to make wards safer by understanding how the feeling of a ward (atmosphere/milieu) links to patient safety. We want to see if we can learn about how wards feel and help staff to make them feel safer.
+            <Typography variant="subtitle1">
+              Please tell us how the ward feels today.
             </Typography>
             <Typography variant="body1" gutterBottom>
-              Over the next few weeks we will ask you three questions, three times a day. The questions have been written with patients. They try to focus on how the ward (atmosphere/milieu) feels to you.
+              We know that sometimes patients on wards do not feel safe. We want to see if we can learn about how the ward atmosphere feels, how this links to patient safety, and if we can help staff to make patients feel safer.
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Over the next few weeks we will ask you a few questions, three times a day. Patients have helped us write these questions. They ask you how the ward feels to you right now.
             </Typography>
             <Typography variant="subtitle1">
               How long will it take?
             </Typography>
             <Typography variant="body1" gutterBottom>
-              We very much hope that you will help us, it should take no more than a few minutes of your time. The more times you do this the better it will be for the study, but if now is not a good time just click the button [Not right now] below.
+              We very much hope that you will help us. Answering the questions will take no more than a few minutes of your time. The more times you do this, the more we will understand about how the ward feels. But if now is not a good time just click the [Not right now] button below.
             </Typography>
             <Typography variant="subtitle1">
               Is it anonymous?
             </Typography>
             <Typography variant="body1" gutterBottom>
-              The answers to the questions will be stored safely and made anonymous.
+              All answers are anonymous. The data is encrypted and stored safely. Staff, patients and researchers will be able to see and discuss the data.
             </Typography>
             <Typography variant="subtitle1">
               Where can I find more information?
             </Typography>
             <Typography variant="body1">
-              This study has been reviewed by the NHS ethics committee (insert reference). This study has been funded by the National Institute for Health Research. If you want to know more about the study please click here [insert hyperlink].
+              The study has been favourably reviewed (or approved) by xx NHS ethics committee (insert reference). If you want to know more, please click here [insert hyperlink] or ask a member of staff for an information leaflet.
             </Typography>
           </Grid>
         </Grid>
