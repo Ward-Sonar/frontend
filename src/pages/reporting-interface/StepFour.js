@@ -52,7 +52,7 @@ class StepFour extends Component {
                 variant="h2"
                 align="center"
                 gutterBottom>
-                Which of the things below is making the ward feel {this.props.howDoesTheWardFeel}?
+                Which one of the things below is making the ward atmosphere feel {this.props.howDoesTheWardFeel}?
               </Typography>
             </Grid>
         </Grid>
@@ -94,7 +94,7 @@ class StepFour extends Component {
                 
               </div>
               <div className="custom-toggle-button-label">
-                <Typography variant="subtitle1" style={{wordBreak: 'break-all'}}>The ward/environment</Typography>
+                <Typography variant="subtitle1" style={{wordBreak: 'break-all'}}>The ward</Typography>
               </div>
             </ToggleButton>
             <ToggleButton value={5} aria-label="Other">

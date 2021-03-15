@@ -43,10 +43,10 @@ class StepThree extends Component {
           alignItems="center">
             <Grid item xs={10}>
               <Typography variant="h1" align="center" gutterBottom>
-                What direction is it going in?
+                Is the feeling of the ward atmosphere changing?
               </Typography>
               <Typography variant="h4" align="center" gutterBottom>
-                You can only make 1 selection
+                Please pick one
               </Typography>
             </Grid>
         </Grid>
@@ -64,7 +64,7 @@ class StepThree extends Component {
                 <ArrowUpYellow />
               </div>
               <div className="custom-toggle-button-label">
-                <Typography variant="subtitle1">Getting better</Typography>
+                <Typography variant="subtitle1">Getting calmer</Typography>
               </div>
             </ToggleButton>
             <ToggleButton value={0} aria-label="The same">
@@ -80,7 +80,7 @@ class StepThree extends Component {
                 <ArrowDownGrey />
               </div>
               <div className="custom-toggle-button-label">
-                <Typography variant="subtitle1">Getting worse</Typography>
+                <Typography variant="subtitle1">Getting stormy</Typography>
               </div>
             </ToggleButton>
           </ToggleButtonGroup>

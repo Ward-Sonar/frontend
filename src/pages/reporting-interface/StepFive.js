@@ -27,16 +27,35 @@ class StepFour extends Component {
                 variant="h1"
                 align="center"
                 gutterBottom>
-                Thank you for sharing your ward feelings with us
+                Thank you for sharing your feelings with us.
               </Typography>
               <Typography
                 variant="h3"
                 align="center"
                 gutterBottom>
-                Your submission has been saved
+                The data has been saved.
               </Typography>
             </Grid>
         </Grid>
+        <div style={{ marginBottom: 80 }}>
+          <Grid
+            container
+            justify="center"
+            alignItems="center">
+              <Grid item>
+                <Grid container spacing={5}>
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => this.handleStepChange(1)}>
+                        Press to close
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+          </Grid>
+        </div>
         <Grid
           container
           justify="center"
@@ -58,25 +77,6 @@ class StepFour extends Component {
               </Box>
             </Grid>
         </Grid>
-        <div style={{ marginTop: 80 }}>
-          <Grid
-            container
-            justify="center"
-            alignItems="center">
-              <Grid item>
-                <Grid container spacing={5}>
-                  <Grid item>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={() => this.handleStepChange(1)}>
-                        Press to close
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Grid>
-          </Grid>
-        </div>
       </div>
     )
   }

@@ -45,10 +45,10 @@ class StepTwo extends Component {
           alignItems="center">
           <Grid item xs>
             <Typography variant="h1" align="center" gutterBottom>
-              How does the ward atmosphere feel to you today?
+              How does the ward atmosphere feel right now?
             </Typography>
             <Typography variant="h4" align="center" gutterBottom>
-              You can only make 1 selection
+              Please pick one
             </Typography>
           </Grid>
         </Grid>
@@ -112,7 +112,7 @@ class StepTwo extends Component {
           height: '13px',
           marginTop: 32,
           marginBottom: 64,
-          background: 'linear-gradient(90deg, rgba(255,211,71,1) 0%, rgba(196,196,196,0) 50%, rgba(137,141,141,1) 100%)',
+          background: 'linear-gradient(90deg, rgba(255,211,71,1) 0%, rgba(196,196,196,0) 50%, rgba(175,175,175,1) 100%)',
         }}></div>
         <div style={{ marginTop: 40 }}>
           <Grid

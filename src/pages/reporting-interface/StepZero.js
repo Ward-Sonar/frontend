@@ -40,7 +40,7 @@ class StepZero extends Component {
               Not right now
             </Typography>
             <Typography variant="body1" align="center" gutterBottom>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mattis odio purus, sed consectetur mi tempus auctor. Vivamus vel sem ac orci tempor elementum 
+              We hope that you will do this next time.
             </Typography>
             <Button
               variant="contained"
