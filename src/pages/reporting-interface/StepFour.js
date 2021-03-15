@@ -51,7 +51,7 @@ class StepFour extends Component {
                 variant="h2"
                 align="center"
                 gutterBottom>
-                Which of the things below is making the ward feel {this.props.howDoesTheWardFeel}?
+                Which of the things below is making the ward feel "{this.props.howDoesTheWardFeel}"?
               </Typography>
             </Grid>
         </Grid>

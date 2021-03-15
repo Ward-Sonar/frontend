@@ -151,7 +151,8 @@ const theme = createMuiTheme({
         border: '1px solid #FAF7F7'
       },
       inputMultiline: {
-        width: 520,
+        width: '100%',
+        maxWidth: 520,
         height: '96px !important',
         padding: 16,
       }

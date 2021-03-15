@@ -57,6 +57,7 @@ class StepTwo extends Component {
           justify="center">
           <ToggleButtonGroup
             style={{
+              display: 'grid',
               gridTemplateColumns: 'repeat(5, 1fr)',
             }}
             value={selected}

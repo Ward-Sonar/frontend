@@ -22,6 +22,7 @@ class ReportingInterface extends Component {
       step: 1,
       atmosphere: '',
       direction: '',
+      directionLabel: '',
       causes: [],
       comment: '',
       abandoned: false,
@@ -107,7 +108,7 @@ class ReportingInterface extends Component {
             display: "flex",
             alignItems: "center",
             minHeight: "calc(100vh - 178px)",
-            padding: "3rem",
+            padding: "2rem",
             boxSizing: "border-box",
           }}>
             {this.state.step === -1 &&  
@@ -126,7 +127,7 @@ class ReportingInterface extends Component {
               <StepThree onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} />
             }
             {this.state.step === 4 &&
-              <StepFour onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} howDoesTheWardFeel={this.state.answerOne} />
+              <StepFour onStepChange={this.handleStepChange} onSetAnswer={this.setAnswer} howDoesTheWardFeel={this.state.directionLabel} />
             }
             {this.state.step === 5 &&
               <StepFive onStepChange={this.handleStepChange} />

@@ -14,8 +14,8 @@ class Header extends Component {
       <Box
         component="footer"
         bgcolor="common.white"
-        px={6}
-        py={8}>
+        px={4}
+        py={4}>
         <Grid
           container
           justify="space-between"
@@ -32,10 +32,10 @@ class Header extends Component {
           justify="space-between"
           alignItems="center">
           <Grid item>
-            <img src={NIHRLogo} alt="National Institue for Health Research" />
+            <img src={NIHRLogo} alt="National Institue for Health Research" style={{maxWidth: '100%'}} />
           </Grid>
           <Grid item>
-            <img src={UniversityOfLeedsLogo} alt="University of Leeds" />
+            <img src={UniversityOfLeedsLogo} alt="University of Leeds" style={{maxWidth: '100%'}} />
           </Grid>
         </Grid>
       </Box>
