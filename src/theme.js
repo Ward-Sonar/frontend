@@ -68,6 +68,10 @@ const theme = createMuiTheme({
       fontSize: '3.75rem',
       fontWeight: 600,
       lineHeight: '4.5rem',
+      '@media (max-width:600px)': {
+        fontSize: '2.375rem',
+        lineHeight: '2.875rem',
+      }
     },
     h2: {
       fontFamily: [
@@ -77,6 +81,10 @@ const theme = createMuiTheme({
       fontSize: '3rem',
       fontWeight: 600,
       lineHeight: '3.625rem',
+      '@media (max-width:600px)': {
+        fontSize: '2rem',
+        lineHeight: '2.75rem',
+      }
     },
     h3: {
       fontFamily: [
@@ -86,6 +94,10 @@ const theme = createMuiTheme({
       fontSize: '2.125rem',
       fontWeight: 400,
       lineHeight: '3rem',
+      '@media (max-width:600px)': {
+        fontSize: '1.5rem',
+        lineHeight: '2rem',
+      }
     },
     h4: {
       fontFamily: [
@@ -95,15 +107,27 @@ const theme = createMuiTheme({
       fontSize: '1.5rem',
       fontWeight: 400,
       lineHeight: '2.625rem',
+      '@media (max-width:600px)': {
+        fontSize: '1.25rem',
+        lineHeight: '1.75rem',
+      }
     },
     subtitle1: {
       fontSize: '1.25rem',
       fontWeight: 700,
       lineHeight: '1.875rem',
+      '@media (max-width:600px)': {
+        fontSize: '1rem',
+        lineHeight: '1.5rem',
+      }
     },
     body1: {
       fontSize: '1.25rem',
       lineHeight: '1.875rem',
+      '@media (max-width:600px)': {
+        fontSize: '1rem',
+        lineHeight: '1.5rem',
+      }
     },
     body2: {
       fontSize: '1rem',
@@ -121,6 +145,10 @@ const theme = createMuiTheme({
       ':disabled': {
         backgroundColor: 'inherit',
         color: 'black',
+      },
+      '@media (max-width:600px)': {
+        fontSize: '1.5rem',
+        lineHeight: '1.625rem',
       }
     },
     shadows: {
@@ -131,6 +159,9 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         padding: '1.5rem 2rem',
+        '@media (max-width:600px)': {
+          padding: '0.75rem 1.25rem',
+        }
       },
     },
     MuiDivider: {
@@ -184,6 +215,9 @@ const theme = createMuiTheme({
           padding: 0,
           border: '3px solid #898D8D !important',
         },
+        '@media (max-width:600px)': {
+          maxWidth: '100%',
+        }
       },
       label: {
         display: 'flex',
@@ -192,6 +226,11 @@ const theme = createMuiTheme({
         justifyContent: 'left',
         flexWrap: 'wrap',
         height: '100%',
+        '@media (max-width:600px)': {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          flexWrap: 'nowrap',
+        }
       }
     },
     MuiToggleButtonGroup: {
