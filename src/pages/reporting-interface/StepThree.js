@@ -23,8 +23,11 @@ class StepThree extends Component {
   }
 
   handleAnswer = (event, selected) => {
-    this.setState({ selected }, () => {
+    this.setState({
+      selected: [selected]
+    }, () => {
       this.props.onSetAnswer('direction', selected);
+      this.props.onSetAnswer('directionLabel', event.target.innerText);
     });
   };
 
@@ -58,6 +61,7 @@ class StepThree extends Component {
             exclusive
             onChange={this.handleAnswer}
             aria-label="How does the ward atmosphere feel to you today?"
+            style={{width: '100%'}}
           >
             <ToggleButton value={-1} aria-label="Getting better">
               <div className="custom-toggle-button-icon">

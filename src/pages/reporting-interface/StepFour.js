@@ -10,6 +10,13 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import TextField from '@material-ui/core/TextField';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
+// Import illustrations
+import { ReactComponent as TheStaff } from '../../assets/the-staff.svg';
+import { ReactComponent as TheOtherPatients } from '../../assets/the-other-patients.svg';
+import { ReactComponent as HowImFeeling } from '../../assets/how-im-feeling.svg';
+import { ReactComponent as TheWard } from '../../assets/the-ward.svg';
+import { ReactComponent as Other } from '../../assets/other.svg';
+
 class StepFour extends Component {
   constructor(props) {
     super(props);
@@ -19,11 +26,10 @@ class StepFour extends Component {
     }
     this.handleStepChange = this.handleStepChange.bind(this);
   }
+  
 
   handleAnswer = (event, selected) => {
-    this.setState({ selected }, () => {
-      this.props.onSetAnswer('causes', selected);
-    });
+    this.setState({ selected: [selected] }, this.props.onSetAnswer('causes', selected));
   };
 
   handleDetail = (event) => {
@@ -52,7 +58,7 @@ class StepFour extends Component {
                 variant="h2"
                 align="center"
                 gutterBottom>
-                Which one of the things below is making the ward atmosphere feel {this.props.howDoesTheWardFeel}?
+                Which of the things below is making the ward feel "{this.props.howDoesTheWardFeel}"?
               </Typography>
             </Grid>
         </Grid>
@@ -64,10 +70,11 @@ class StepFour extends Component {
             onChange={this.handleAnswer}
             required
             aria-label="How does the ward atmosphere feel to you today?"
+            style={{width: '100%', maxWidth: 620}}
           >
             <ToggleButton value={1} aria-label="The staff">
               <div className="custom-toggle-button-icon">
-                
+                <TheStaff />
               </div>
               <div className="custom-toggle-button-label">
                 <Typography variant="subtitle1">The staff</Typography>
@@ -75,7 +82,7 @@ class StepFour extends Component {
             </ToggleButton>
             <ToggleButton value={2} aria-label="The other patients">
               <div className="custom-toggle-button-icon">
-                
+                <TheOtherPatients />
               </div>
               <div className="custom-toggle-button-label">
                 <Typography variant="subtitle1">The other patients</Typography>
@@ -83,15 +90,15 @@ class StepFour extends Component {
             </ToggleButton>
             <ToggleButton value={3} aria-label="How I'm feeling">
               <div className="custom-toggle-button-icon">
-                
+                <HowImFeeling />
               </div>
               <div className="custom-toggle-button-label">
                 <Typography variant="subtitle1">How I'm feeling</Typography>
               </div>
             </ToggleButton>
-            <ToggleButton value={4} aria-label="The ward/environment">
+            <ToggleButton value={4} aria-label="The ward">
               <div className="custom-toggle-button-icon">
-                
+                <TheWard />
               </div>
               <div className="custom-toggle-button-label">
                 <Typography variant="subtitle1" style={{wordBreak: 'break-all'}}>The ward</Typography>
@@ -99,23 +106,7 @@ class StepFour extends Component {
             </ToggleButton>
             <ToggleButton value={5} aria-label="Other">
               <div className="custom-toggle-button-icon">
-                
-              </div>
-              <div className="custom-toggle-button-label">
-              <Typography variant="subtitle1">Option 5</Typography>
-              </div>
-            </ToggleButton>
-            <ToggleButton value={6} aria-label="Other">
-              <div className="custom-toggle-button-icon">
-                
-              </div>
-              <div className="custom-toggle-button-label">
-              <Typography variant="subtitle1">Option 6</Typography>
-              </div>
-            </ToggleButton>
-            <ToggleButton value={7} aria-label="Other">
-              <div className="custom-toggle-button-icon">
-                
+                <Other />
               </div>
               <div className="custom-toggle-button-label">
               <Typography variant="subtitle1">Other</Typography>

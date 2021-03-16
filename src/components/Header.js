@@ -20,14 +20,14 @@ class Header extends Component {
         <Box
           component="header"
           bgcolor="common.white"
-          px={6}
+          px={4}
           py={4}>
           <Grid
             container
             justify="space-between"
             alignItems="center"
             spacing={4}>
-            <Grid item xs>
+            <Grid item sm>
               <Route exact path="/" component={NetworkStatus} />
               <Route exact path="/dashboard">
                 <Typography variant="h4" align="left" style={{width: '100%'}}>
@@ -38,11 +38,13 @@ class Header extends Component {
 
             <Grid
               item
-              xs
+              sm
               container
               justify="flex-end"
               alignItems="center">
-              <img src={Logo} alt="NHS: Leeds and York Partnership - NHS Foundation Trust" />
+              <div style={{display: 'block', width: '100%', textAlign: 'right'}}>
+                <img src={Logo} alt="NHS: Leeds and York Partnership - NHS Foundation Trust" style={{maxWidth: '100%'}}/>
+              </div>
               <Route exact path="/">
                 <Typography variant="h4" align="right" style={{width: '100%'}}>
                   {process.env.REACT_APP_WARD_NAME}

@@ -38,7 +38,6 @@ class AtmosphereDial extends Component {
   }
 
   componentDidMount() {
-    this.setRotation();
     this.getAtmosphere();
 
     const refreshAtmosphere = setInterval(() => {
@@ -52,15 +51,14 @@ class AtmosphereDial extends Component {
     .then((res) => {
       this.setState({
         atmosphere: res.data.data.attributes.atmosphere,
-      }, () => {
-        this.setRotation();
-      });
+      }, this.setRotation());
       this.props.setRefreshTime(res.data.data.attributes.datetime);
     });
   }
 
   setRotation() {
     let rotation = rotations.find(item => item.atmosphere === this.state.atmosphere);
+
     this.setState({
       rotation: rotation.rotation,
     });

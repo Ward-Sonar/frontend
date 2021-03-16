@@ -25,9 +25,9 @@ class StepTwo extends Component {
   }
 
   handleAnswer = (event, selected) => {
-    this.setState({ selected }, () => {
-      this.props.onSetAnswer('atmosphere', selected);
-    });
+    this.setState({
+      selected: [selected]
+    }, this.props.onSetAnswer('atmosphere', selected));
   };
 
   handleStepChange(step) {
@@ -54,11 +54,9 @@ class StepTwo extends Component {
         </Grid>
         <Grid
           container
-          justify="center">
+          justify="center"
+          style={{position: "relative"}}>
           <ToggleButtonGroup
-            style={{
-              gridTemplateColumns: 'repeat(5, 1fr)',
-            }}
             value={selected}
             exclusive
             onChange={this.handleAnswer}
@@ -105,6 +103,7 @@ class StepTwo extends Component {
               </div>
             </ToggleButton>
           </ToggleButtonGroup>
+          <div className="gradient-bar"></div>
         </Grid>
         <div style={{
           display: 'block',
