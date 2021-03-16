@@ -105,14 +105,6 @@ class StepTwo extends Component {
           </ToggleButtonGroup>
           <div className="gradient-bar"></div>
         </Grid>
-        <div style={{
-          display: 'block',
-          width: '100%',
-          height: '13px',
-          marginTop: 32,
-          marginBottom: 64,
-          background: 'linear-gradient(90deg, rgba(255,211,71,1) 0%, rgba(196,196,196,0) 50%, rgba(175,175,175,1) 100%)',
-        }}></div>
         <div style={{ marginTop: 40 }}>
           <Grid
             container
