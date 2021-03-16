@@ -104,7 +104,7 @@ class StepFour extends Component {
                 <Typography variant="subtitle1" style={{wordBreak: 'break-all'}}>The ward</Typography>
               </div>
             </ToggleButton>
-            <ToggleButton value={7} aria-label="Other">
+            <ToggleButton value={5} aria-label="Other">
               <div className="custom-toggle-button-icon">
                 <Other />
               </div>

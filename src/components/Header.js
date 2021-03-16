@@ -30,7 +30,7 @@ class Header extends Component {
             <Grid item sm>
               <Route exact path="/" component={NetworkStatus} />
               <Route exact path="/dashboard">
-                <Typography variant="h4" align="left">
+                <Typography variant="h4" align="left" style={{width: '100%'}}>
                   {process.env.REACT_APP_WARD_NAME}
                 </Typography>
               </Route>
@@ -46,7 +46,7 @@ class Header extends Component {
                 <img src={Logo} alt="NHS: Leeds and York Partnership - NHS Foundation Trust" style={{maxWidth: '100%'}}/>
               </div>
               <Route exact path="/">
-                <Typography variant="h4" align="right">
+                <Typography variant="h4" align="right" style={{width: '100%'}}>
                   {process.env.REACT_APP_WARD_NAME}
                 </Typography>
               </Route>
