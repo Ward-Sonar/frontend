@@ -57,6 +57,8 @@ class ReportingInterface extends Component {
         step: step,
       });
     }
+
+    window.scrollTo(0, 0);
   }
 
   checkReload(evt) {
