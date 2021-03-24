@@ -68,3 +68,43 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Deploy
+
+Deploy is via Travis and AWS
+
+### Secret value
+
+Each ward requires a secret in AWS, together with a secret for the staging site. Each secret should be named in the format:
+
+.env.frontend.[WARD]
+
+Where [WARD] is one of:
+
+- ward1
+- ward2
+- ward3
+- ward4
+- ward5
+- ward6
+- staging
+
+Each Secret value should take the form:
+
+```
+REACT_APP_WARD_NAME=
+REACT_APP_API_URL=
+REACT_APP_API_TOKEN=
+REACT_APP_URL_KEY=
+S3_BUCKET_NAME=
+DISTRIBUTION_ID=
+```
+
+Where:
+
+- REACT_APP_WARD_NAME is the human readable anme of the Ward
+- REACT_APP_API_URL is the api endpoint to connect to
+- REACT_APP_API_TOKEN is the api token to pass in the bearer token
+- REACT_APP_URL_KEY is the random string
+- S3_BUCKET_NAME is the name of the AWS S3 bucket that the app is deployed to
+- DISTRIBUTION_ID is the AWS Cloudfront Distribution that will deliver the app

@@ -11,9 +11,12 @@
 # Bail out on first error.
 set -e
 
-# Declare the configuration variables for the deployment.
-echo "Setting deployment configuration for ${ENVIRONMENT}..."
-ENV_SECRET_ID=".env.frontend.${ENVIRONMENT}"
+# Set the Wards to deploy for
+if [ "$ENVIRONMENT" == "production" ]; then
+    WARDS=(ward1 ward2 ward3 ward4 ward5 ward6)
+else
+    WARDS=(${ENVIRONMENT})
+fi
 
 # Install AWS-CLI
 if ! command -v aws &> /dev/null; then
@@ -42,34 +45,43 @@ if [ ! -z "${AWS_IAM_ROLE_ARN}" ]; then
 EOF
 fi
 
-# Get the .env file.
-if [ ! -z "${AWS_IAM_ROLE_ARN}" ]; then
-    echo "Creating .env file from secret: $ENV_SECRET_ID as IAM Role: $AWS_IAM_ROLE_ARN"
-    SECRET=`aws secretsmanager get-secret-value \
-        --profile accessrole \
-        --secret-id ${ENV_SECRET_ID}`
-else
-    echo "Creating .env file from secret: $ENV_SECRET_ID"
-    SECRET=`aws secretsmanager get-secret-value \
-        --secret-id ${ENV_SECRET_ID}`
-fi
+for WARD in "${WARDS[@]}"
+do
 
-rm -f .env
+    # Declare the configuration variables for the deployment.
+    echo "Setting deployment configuration for $WARD..."
+    ENV_SECRET_ID=".env.frontend.$WARD"
 
-echo $SECRET | python -c "import json,sys;obj=json.load(sys.stdin);print obj['SecretString'];" > .env
+    # Get the .env file.
+    if [ ! -z "${AWS_IAM_ROLE_ARN}" ]; then
+        echo "Creating .env file from secret: $ENV_SECRET_ID as IAM Role: $AWS_IAM_ROLE_ARN"
+        SECRET=`aws secretsmanager get-secret-value \
+            --profile accessrole \
+            --secret-id ${ENV_SECRET_ID}`
+    else
+        echo "Creating .env file from secret: $ENV_SECRET_ID"
+        SECRET=`aws secretsmanager get-secret-value \
+            --secret-id ${ENV_SECRET_ID}`
+    fi
 
-source .env
+    rm -f .env
 
-# Build.
-echo "Building..."
-npm run build
+    echo $SECRET | python -c "import json,sys;obj=json.load(sys.stdin);print obj['SecretString'];" > .env
 
-# Deploy to S3.
-echo "Deploying..."
-if [ ! -z "${AWS_IAM_ROLE_ARN}" ]; then
-    aws s3 sync build/ "s3://${S3_BUCKET_NAME}" --acl public-read --delete --profile accessrole
-    aws cloudfront create-invalidation --distribution-id "${DISTRIBUTION_ID}" --paths "/*" --profile accessrole
-else
-    aws s3 sync build/ "s3://${S3_BUCKET_NAME}" --acl public-read --delete
-    aws cloudfront create-invalidation --distribution-id "${DISTRIBUTION_ID}" --paths "/*"
-fi
+    source .env
+
+    # Build.
+    echo "Building..."
+    npm run build
+
+    # Deploy to S3.
+    echo "Deploying..."
+    if [ ! -z "${AWS_IAM_ROLE_ARN}" ]; then
+        aws s3 sync build/ "s3://${S3_BUCKET_NAME}" --acl public-read --delete --profile accessrole
+        aws cloudfront create-invalidation --distribution-id "${DISTRIBUTION_ID}" --paths "/*" --profile accessrole
+    else
+        aws s3 sync build/ "s3://${S3_BUCKET_NAME}" --acl public-read --delete
+        aws cloudfront create-invalidation --distribution-id "${DISTRIBUTION_ID}" --paths "/*"
+    fi
+
+done

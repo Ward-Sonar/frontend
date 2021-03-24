@@ -45,14 +45,16 @@ Parameters:
   Cname:
     AllowedPattern: "^(?!:\\/\\/)([a-zA-Z0-9-_]+\\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\\.[a-zA-Z]{2,11}?$"
     ConstraintDescription: Must be a valid domain
-    Description: The CNAME for the site.
+    Description: Comma seperated list of CNAMEs for the site.
     MinLength: '1'
-    Type: String
+    Type: CommaDelimitedList
 
   Environment:
     Description: The environment this stack is for (e.g. production or staging).
-    MinLength: '1'
+    Default: staging
     Type: String
+    AllowedValues: [production,staging]
+    ConstraintDescription: must be one of production or staging
 
   Uuid:
     Default: 13247d04-8f6c-41c6-b991-3dc61d2f674b
@@ -61,31 +63,198 @@ Parameters:
     MinLength: '36'
     Type: String
 
+Conditions:
+  CreateProductionResources: !Equals [!Ref Environment, production]
+  CreateStagingResources: !Equals [!Ref Environment, staging]
+
 Resources:
-  Bucket:
+  BucketStaging:
     Type: AWS::S3::Bucket
+    Condition: CreateStagingResources
     Properties:
       AccessControl: PublicRead
       BucketName:
         Fn::Join:
           - '-'
           - - frontend
-            - Ref: Environment
+            - staging
             - Ref: Uuid
 
-  WwwBucket:
+  WwwBucketStaging:
     Type: AWS::S3::Bucket
+    Condition: CreateStagingResources
     Properties:
       AccessControl: PublicRead
       BucketName:
         Fn::Join:
           - '.'
           - - www
-            - Ref: Cname
+            - !Select [ 0, !Ref Cname ]
       WebsiteConfiguration:
         RedirectAllRequestsTo:
-          HostName:
-            Ref: Cname
+          HostName: !Select [ 0, !Ref Cname ]
+          Protocol: https
+
+  BucketWard1:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '-'
+          - - frontend
+            - ward1
+            - Ref: Uuid
+
+  WwwBucketWard1:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '.'
+          - - www
+            - !Select [ 0, !Ref Cname ]
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Select [ 0, !Ref Cname ]
+          Protocol: https
+
+  BucketWard2:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '-'
+          - - frontend
+            - ward2
+            - Ref: Uuid
+
+  WwwBucketWard2:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '.'
+          - - www
+            - !Select [ 1, !Ref Cname ]
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Select [ 1, !Ref Cname ]
+          Protocol: https
+
+  BucketWard3:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '-'
+          - - frontend
+            - ward3
+            - Ref: Uuid
+
+  WwwBucketWard3:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '.'
+          - - www
+            - !Select [ 2, !Ref Cname ]
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Select [ 2, !Ref Cname ]
+          Protocol: https
+
+  BucketWard4:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '-'
+          - - frontend
+            - ward4
+            - Ref: Uuid
+
+  WwwBucketWard4:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '.'
+          - - www
+            - !Select [ 3, !Ref Cname ]
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Select [ 3, !Ref Cname ]
+          Protocol: https
+
+  BucketWard5:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '-'
+          - - frontend
+            - ward5
+            - Ref: Uuid
+
+  WwwBucketWard5:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '.'
+          - - www
+            - !Select [ 4, !Ref Cname ]
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Select [ 4, !Ref Cname ]
+          Protocol: https
+
+  BucketWard6:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '-'
+          - - frontend
+            - ward6
+            - Ref: Uuid
+
+  WwwBucketWard6:
+    Type: AWS::S3::Bucket
+    Condition: CreateProductionResources
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+          - '.'
+          - - www
+            - !Select [ 5, !Ref Cname ]
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Select [ 5, !Ref Cname ]
           Protocol: https
 
   CiUser:
@@ -111,35 +280,17 @@ Resources:
           - - ci-frontend
             - Ref: Environment
 
-  Distribution:
+  DistributionStaging:
     Type: AWS::CloudFront::Distribution
+    Condition: CreateStagingResources
     Properties:
       DistributionConfig:
         Aliases:
-          - Ref: Cname
+          - !Select [ 0, !Ref Cname ]
         CustomErrorResponses:
           - ErrorCode: 404
             ResponseCode: 200
             ResponsePagePath: '/index.html'
-        CacheBehaviors:
-          - AllowedMethods:
-              - HEAD
-              - GET
-            CachedMethods:
-              - HEAD
-              - GET
-            DefaultTTL: 0
-            MaxTTL: 0
-            MinTTL: 0
-            ForwardedValues:
-              QueryString: False
-            PathPattern: '/covid19*'
-            TargetOriginId:
-              Fn::Join:
-                - '-'
-                - - S3
-                  - Ref: Bucket
-            ViewerProtocolPolicy: redirect-to-https
         DefaultCacheBehavior:
           AllowedMethods:
             - HEAD
@@ -153,7 +304,7 @@ Resources:
             Fn::Join:
               - '-'
               - - S3
-                - Ref: Bucket
+                - Ref: BucketStaging
           ViewerProtocolPolicy: redirect-to-https
         DefaultRootObject: index.html
         Enabled: True
@@ -161,28 +312,29 @@ Resources:
         Origins:
           - DomainName:
               Fn::GetAtt:
-                - Bucket
+                - BucketStaging
                 - DomainName
             Id:
               Fn::Join:
                 - '-'
                 - - S3
-                  - Ref: Bucket
+                  - Ref: BucketStaging
             S3OriginConfig: {}
         ViewerCertificate:
           AcmCertificateArn:
             Ref: CertificateArn
           SslSupportMethod: sni-only
 
-  WwwDistribution:
+  WwwDistributionStaging:
     Type: AWS::CloudFront::Distribution
+    Condition: CreateStagingResources
     Properties:
       DistributionConfig:
         Aliases:
           - Fn::Join:
               - '.'
               - - www
-                - Ref: Cname
+                - !Select [ 0, !Ref Cname ]
         DefaultCacheBehavior:
           ForwardedValues:
             QueryString: False
@@ -190,18 +342,511 @@ Resources:
             Fn::Join:
               - '-'
               - - S3
-                - Ref: WwwBucket
+                - Ref: WwwBucketStaging
           ViewerProtocolPolicy: redirect-to-https
         Enabled: True
         IPV6Enabled: True
         Origins:
-          - DomainName:
-              Fn::Sub: www.${Cname}.s3-website-${AWS::Region}.amazonaws.com
+          - DomainName: !Sub
+              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
+              - { Domain: !Select [ 0, !Ref Cname ] }
             Id:
               Fn::Join:
                 - '-'
                 - - S3
-                  - Ref: WwwBucket
+                  - Ref: WwwBucketStaging
+            CustomOriginConfig:
+              OriginProtocolPolicy: http-only
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: WwwCertificateArn
+          SslSupportMethod: sni-only
+
+  DistributionWard1:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Select [ 0, !Ref Cname ]
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: '/index.html'
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - HEAD
+            - GET
+          CachedMethods:
+            - HEAD
+            - GET
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: BucketWard1
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName:
+              Fn::GetAtt:
+                - BucketWard1
+                - DomainName
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: BucketWard1
+            S3OriginConfig: {}
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: CertificateArn
+          SslSupportMethod: sni-only
+
+  WwwDistributionWard1:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - Fn::Join:
+              - '.'
+              - - www
+                - !Select [ 0, !Ref Cname ]
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: WwwBucketWard1
+          ViewerProtocolPolicy: redirect-to-https
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName: !Sub
+              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
+              - { Domain: !Select [ 0, !Ref Cname ] }
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: WwwBucketWard1
+            CustomOriginConfig:
+              OriginProtocolPolicy: http-only
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: WwwCertificateArn
+          SslSupportMethod: sni-only
+
+  DistributionWard2:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Select [ 1, !Ref Cname ]
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: '/index.html'
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - HEAD
+            - GET
+          CachedMethods:
+            - HEAD
+            - GET
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: BucketWard2
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName:
+              Fn::GetAtt:
+                - BucketWard2
+                - DomainName
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: BucketWard2
+            S3OriginConfig: {}
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: CertificateArn
+          SslSupportMethod: sni-only
+
+  WwwDistributionWard2:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - Fn::Join:
+              - '.'
+              - - www
+                - !Select [ 1, !Ref Cname ]
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: WwwBucketWard2
+          ViewerProtocolPolicy: redirect-to-https
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName: !Sub
+              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
+              - { Domain: !Select [ 1, !Ref Cname ] }
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: WwwBucketWard2
+            CustomOriginConfig:
+              OriginProtocolPolicy: http-only
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: WwwCertificateArn
+          SslSupportMethod: sni-only
+
+  DistributionWard3:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Select [ 2, !Ref Cname ]
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: '/index.html'
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - HEAD
+            - GET
+          CachedMethods:
+            - HEAD
+            - GET
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: BucketWard3
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName:
+              Fn::GetAtt:
+                - BucketWard3
+                - DomainName
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: BucketWard3
+            S3OriginConfig: {}
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: CertificateArn
+          SslSupportMethod: sni-only
+
+  WwwDistributionWard3:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - Fn::Join:
+              - '.'
+              - - www
+                - !Select [ 2, !Ref Cname ]
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: WwwBucketWard3
+          ViewerProtocolPolicy: redirect-to-https
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName: !Sub
+              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
+              - { Domain: !Select [ 2, !Ref Cname ] }
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: WwwBucketWard3
+            CustomOriginConfig:
+              OriginProtocolPolicy: http-only
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: WwwCertificateArn
+          SslSupportMethod: sni-only
+
+  DistributionWard4:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Select [ 3, !Ref Cname ]
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: '/index.html'
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - HEAD
+            - GET
+          CachedMethods:
+            - HEAD
+            - GET
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: BucketWard4
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName:
+              Fn::GetAtt:
+                - BucketWard4
+                - DomainName
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: BucketWard4
+            S3OriginConfig: {}
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: CertificateArn
+          SslSupportMethod: sni-only
+
+  WwwDistributionWard4:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - Fn::Join:
+              - '.'
+              - - www
+                - !Select [ 3, !Ref Cname ]
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: WwwBucketWard4
+          ViewerProtocolPolicy: redirect-to-https
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName: !Sub
+              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
+              - { Domain: !Select [ 3, !Ref Cname ] }
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: WwwBucketWard4
+            CustomOriginConfig:
+              OriginProtocolPolicy: http-only
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: WwwCertificateArn
+          SslSupportMethod: sni-only
+
+  DistributionWard5:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Select [ 4, !Ref Cname ]
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: '/index.html'
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - HEAD
+            - GET
+          CachedMethods:
+            - HEAD
+            - GET
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: BucketWard5
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName:
+              Fn::GetAtt:
+                - BucketWard5
+                - DomainName
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: BucketWard5
+            S3OriginConfig: {}
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: CertificateArn
+          SslSupportMethod: sni-only
+
+  WwwDistributionWard5:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - Fn::Join:
+              - '.'
+              - - www
+                - !Select [ 4, !Ref Cname ]
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: WwwBucketWard5
+          ViewerProtocolPolicy: redirect-to-https
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName: !Sub
+              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
+              - { Domain: !Select [ 4, !Ref Cname ] }
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: WwwBucketWard5
+            CustomOriginConfig:
+              OriginProtocolPolicy: http-only
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: WwwCertificateArn
+          SslSupportMethod: sni-only
+
+  DistributionWard6:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Select [ 5, !Ref Cname ]
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: '/index.html'
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - HEAD
+            - GET
+          CachedMethods:
+            - HEAD
+            - GET
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: BucketWard6
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName:
+              Fn::GetAtt:
+                - BucketWard6
+                - DomainName
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: BucketWard6
+            S3OriginConfig: {}
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: CertificateArn
+          SslSupportMethod: sni-only
+
+  WwwDistributionWard6:
+    Type: AWS::CloudFront::Distribution
+    Condition: CreateProductionResources
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - Fn::Join:
+              - '.'
+              - - www
+                - !Select [ 5, !Ref Cname ]
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId:
+            Fn::Join:
+              - '-'
+              - - S3
+                - Ref: WwwBucketWard6
+          ViewerProtocolPolicy: redirect-to-https
+        Enabled: True
+        IPV6Enabled: True
+        Origins:
+          - DomainName: !Sub
+              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
+              - { Domain: !Select [ 5, !Ref Cname ] }
+            Id:
+              Fn::Join:
+                - '-'
+                - - S3
+                  - Ref: WwwBucketWard6
             CustomOriginConfig:
               OriginProtocolPolicy: http-only
         ViewerCertificate:
