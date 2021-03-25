@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 // Import Material UI components
 import Grid from '@material-ui/core/Grid';
@@ -28,12 +28,6 @@ const StyledToggleButtonGroup = withStyles(() => ({
     },
   },
 }))(ToggleButtonGroup);
-
-const toggleButtonStyle = {
-  root: {
-    margin: '0px !important'
-  }
-}
 
 class StepTwo extends Component {
   constructor(props) {
