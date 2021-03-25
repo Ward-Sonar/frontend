@@ -5,15 +5,14 @@
 # $AWS_ACCESS_KEY_ID = The AWS access key.
 # $AWS_SECRET_ACCESS_KEY = The AWS secret access key.
 # $AWS_DEFAULT_REGION = The AWS region.
-# $S3_BUCKET_NAME = The S3 bucket to deploy to.
-# $DISTRIBUTION_ID = The CloudFront distribution to invalidate.
+# $AWS_IAM_ROLE_ARN = The role to use for deploy (not required)
 
 # Bail out on first error.
 set -e
 
 # Set the Wards to deploy for
 if [ "$ENVIRONMENT" == "production" ]; then
-    WARDS=(ward1 ward2 ward3 ward4 ward5 ward6)
+    WARDS=(${WARD_LIST})
 else
     WARDS=(${ENVIRONMENT})
 fi
