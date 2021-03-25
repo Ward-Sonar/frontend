@@ -2,34 +2,166 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Create the core infrastructure needed to run the Ward Sonar Frontend
 
 Outputs:
-  BucketName:
-    Description: The S3 bucket name
+  BucketNameStaging:
+    Description: The staging S3 bucket name
     Value:
       Fn::Join:
         - '-'
         - - frontend
-          - Ref: Environment
+          - staging
           - Ref: Uuid
 
-  CloudFrontDomain:
-    Description: The domain name of the CloudFront distribution
+  BucketNameWard1:
+    Description: The ward1 S3 bucket name
+    Value:
+      Fn::Join:
+        - '-'
+        - - frontend
+          - ward1
+          - Ref: Uuid
+
+  BucketNameWard2:
+    Description: The ward2 S3 bucket name
+    Value:
+      Fn::Join:
+        - '-'
+        - - frontend
+          - ward2
+          - Ref: Uuid
+
+  BucketNameWard3:
+    Description: The ward3 S3 bucket name
+    Value:
+      Fn::Join:
+        - '-'
+        - - frontend
+          - ward3
+          - Ref: Uuid
+
+  BucketNameWard4:
+    Description: The ward4 S3 bucket name
+    Value:
+      Fn::Join:
+        - '-'
+        - - frontend
+          - ward4
+          - Ref: Uuid
+
+  BucketNameWard5:
+    Description: The ward5 S3 bucket name
+    Value:
+      Fn::Join:
+        - '-'
+        - - frontend
+          - ward5
+          - Ref: Uuid
+
+  BucketNameWard6:
+    Description: The ward6 S3 bucket name
+    Value:
+      Fn::Join:
+        - '-'
+        - - frontend
+          - ward6
+          - Ref: Uuid
+
+  CloudFrontDomainStaging:
+    Description: The domain name of the staging CloudFront distribution
+    Condition: CreateStagingResources
     Value:
       Fn::GetAtt:
-        - Distribution
+        - DistributionStaging
         - DomainName
 
-  WwwCloudFrontDomain:
-    Description: The domain name of the CloudFront distribution for the www
-      subdomain
+  CloudFrontIdStaging:
+    Description: The ID of the staging CloudFront distribution
+    Condition: CreateStagingResources
+    Value:
+      Ref: DistributionStaging
+
+  CloudFrontDomainWard1:
+    Description: The domain name of the ward1 CloudFront distribution
+    Condition: CreateProductionResources
     Value:
       Fn::GetAtt:
-        - WwwDistribution
+        - DistributionWard1
         - DomainName
 
-  CloudFrontId:
-    Description: The ID of the CloudFront distribution
+  CloudFrontIdWard1:
+    Description: The ID of the ward1 CloudFront distribution
+    Condition: CreateProductionResources
     Value:
-      Ref: Distribution
+      Ref: DistributionWard1
+
+  CloudFrontDomainWard2:
+    Description: The domain name of the ward2 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Fn::GetAtt:
+        - DistributionWard2
+        - DomainName
+
+  CloudFrontIdWard2:
+    Description: The ID of the ward2 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Ref: DistributionWard2
+
+  CloudFrontDomainWard3:
+    Description: The domain name of the ward3 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Fn::GetAtt:
+        - DistributionWard3
+        - DomainName
+
+  CloudFrontIdWard3:
+    Description: The ID of the ward3 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Ref: DistributionWard3
+
+  CloudFrontDomainWard4:
+    Description: The domain name of the ward4 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Fn::GetAtt:
+        - DistributionWard4
+        - DomainName
+
+  CloudFrontIdWard4:
+    Description: The ID of the ward4 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Ref: DistributionWard4
+
+  CloudFrontDomainWard5:
+    Description: The domain name of the ward5 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Fn::GetAtt:
+        - DistributionWard5
+        - DomainName
+
+  CloudFrontIdWard5:
+    Description: The ID of the ward5 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Ref: DistributionWard5
+
+  CloudFrontDomainWard6:
+    Description: The domain name of the ward6 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Fn::GetAtt:
+        - DistributionWard6
+        - DomainName
+
+  CloudFrontIdWard6:
+    Description: The ID of the ward6 CloudFront distribution
+    Condition: CreateProductionResources
+    Value:
+      Ref: DistributionWard6
 
 Parameters:
   CertificateArn:
@@ -37,23 +169,18 @@ Parameters:
       be in us-east-1).
     Type: String
 
-  WwwCertificateArn:
-    Description: The ARN for the CloudFront distribution SSL certificate for the
-      www subdomain (must be in us-east-1).
-    Type: String
-
   Cname:
-    AllowedPattern: "^(?!:\\/\\/)([a-zA-Z0-9-_]+\\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\\.[a-zA-Z]{2,11}?$"
+    AllowedPattern: "^((?!:\\/\\/)([a-zA-Z0-9-_]+\\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\\.[a-zA-Z]{2,11}?,?)+$"
     ConstraintDescription: Must be a valid domain
     Description: Comma seperated list of CNAMEs for the site.
     MinLength: '1'
-    Type: CommaDelimitedList
+    Type: String
 
   Environment:
     Description: The environment this stack is for (e.g. production or staging).
     Default: staging
     Type: String
-    AllowedValues: [production,staging]
+    AllowedValues: [production, staging]
     ConstraintDescription: must be one of production or staging
 
   Uuid:
@@ -80,21 +207,6 @@ Resources:
             - staging
             - Ref: Uuid
 
-  WwwBucketStaging:
-    Type: AWS::S3::Bucket
-    Condition: CreateStagingResources
-    Properties:
-      AccessControl: PublicRead
-      BucketName:
-        Fn::Join:
-          - '.'
-          - - www
-            - !Select [ 0, !Ref Cname ]
-      WebsiteConfiguration:
-        RedirectAllRequestsTo:
-          HostName: !Select [ 0, !Ref Cname ]
-          Protocol: https
-
   BucketWard1:
     Type: AWS::S3::Bucket
     Condition: CreateProductionResources
@@ -106,21 +218,6 @@ Resources:
           - - frontend
             - ward1
             - Ref: Uuid
-
-  WwwBucketWard1:
-    Type: AWS::S3::Bucket
-    Condition: CreateProductionResources
-    Properties:
-      AccessControl: PublicRead
-      BucketName:
-        Fn::Join:
-          - '.'
-          - - www
-            - !Select [ 0, !Ref Cname ]
-      WebsiteConfiguration:
-        RedirectAllRequestsTo:
-          HostName: !Select [ 0, !Ref Cname ]
-          Protocol: https
 
   BucketWard2:
     Type: AWS::S3::Bucket
@@ -134,21 +231,6 @@ Resources:
             - ward2
             - Ref: Uuid
 
-  WwwBucketWard2:
-    Type: AWS::S3::Bucket
-    Condition: CreateProductionResources
-    Properties:
-      AccessControl: PublicRead
-      BucketName:
-        Fn::Join:
-          - '.'
-          - - www
-            - !Select [ 1, !Ref Cname ]
-      WebsiteConfiguration:
-        RedirectAllRequestsTo:
-          HostName: !Select [ 1, !Ref Cname ]
-          Protocol: https
-
   BucketWard3:
     Type: AWS::S3::Bucket
     Condition: CreateProductionResources
@@ -160,21 +242,6 @@ Resources:
           - - frontend
             - ward3
             - Ref: Uuid
-
-  WwwBucketWard3:
-    Type: AWS::S3::Bucket
-    Condition: CreateProductionResources
-    Properties:
-      AccessControl: PublicRead
-      BucketName:
-        Fn::Join:
-          - '.'
-          - - www
-            - !Select [ 2, !Ref Cname ]
-      WebsiteConfiguration:
-        RedirectAllRequestsTo:
-          HostName: !Select [ 2, !Ref Cname ]
-          Protocol: https
 
   BucketWard4:
     Type: AWS::S3::Bucket
@@ -188,21 +255,6 @@ Resources:
             - ward4
             - Ref: Uuid
 
-  WwwBucketWard4:
-    Type: AWS::S3::Bucket
-    Condition: CreateProductionResources
-    Properties:
-      AccessControl: PublicRead
-      BucketName:
-        Fn::Join:
-          - '.'
-          - - www
-            - !Select [ 3, !Ref Cname ]
-      WebsiteConfiguration:
-        RedirectAllRequestsTo:
-          HostName: !Select [ 3, !Ref Cname ]
-          Protocol: https
-
   BucketWard5:
     Type: AWS::S3::Bucket
     Condition: CreateProductionResources
@@ -215,21 +267,6 @@ Resources:
             - ward5
             - Ref: Uuid
 
-  WwwBucketWard5:
-    Type: AWS::S3::Bucket
-    Condition: CreateProductionResources
-    Properties:
-      AccessControl: PublicRead
-      BucketName:
-        Fn::Join:
-          - '.'
-          - - www
-            - !Select [ 4, !Ref Cname ]
-      WebsiteConfiguration:
-        RedirectAllRequestsTo:
-          HostName: !Select [ 4, !Ref Cname ]
-          Protocol: https
-
   BucketWard6:
     Type: AWS::S3::Bucket
     Condition: CreateProductionResources
@@ -241,21 +278,6 @@ Resources:
           - - frontend
             - ward6
             - Ref: Uuid
-
-  WwwBucketWard6:
-    Type: AWS::S3::Bucket
-    Condition: CreateProductionResources
-    Properties:
-      AccessControl: PublicRead
-      BucketName:
-        Fn::Join:
-          - '.'
-          - - www
-            - !Select [ 5, !Ref Cname ]
-      WebsiteConfiguration:
-        RedirectAllRequestsTo:
-          HostName: !Select [ 5, !Ref Cname ]
-          Protocol: https
 
   CiUser:
     Type: AWS::IAM::User
@@ -286,7 +308,7 @@ Resources:
     Properties:
       DistributionConfig:
         Aliases:
-          - !Select [ 0, !Ref Cname ]
+          - !Select [0, !Split [',', !Ref Cname]]
         CustomErrorResponses:
           - ErrorCode: 404
             ResponseCode: 200
@@ -325,50 +347,13 @@ Resources:
             Ref: CertificateArn
           SslSupportMethod: sni-only
 
-  WwwDistributionStaging:
-    Type: AWS::CloudFront::Distribution
-    Condition: CreateStagingResources
-    Properties:
-      DistributionConfig:
-        Aliases:
-          - Fn::Join:
-              - '.'
-              - - www
-                - !Select [ 0, !Ref Cname ]
-        DefaultCacheBehavior:
-          ForwardedValues:
-            QueryString: False
-          TargetOriginId:
-            Fn::Join:
-              - '-'
-              - - S3
-                - Ref: WwwBucketStaging
-          ViewerProtocolPolicy: redirect-to-https
-        Enabled: True
-        IPV6Enabled: True
-        Origins:
-          - DomainName: !Sub
-              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
-              - { Domain: !Select [ 0, !Ref Cname ] }
-            Id:
-              Fn::Join:
-                - '-'
-                - - S3
-                  - Ref: WwwBucketStaging
-            CustomOriginConfig:
-              OriginProtocolPolicy: http-only
-        ViewerCertificate:
-          AcmCertificateArn:
-            Ref: WwwCertificateArn
-          SslSupportMethod: sni-only
-
   DistributionWard1:
     Type: AWS::CloudFront::Distribution
     Condition: CreateProductionResources
     Properties:
       DistributionConfig:
         Aliases:
-          - !Select [ 0, !Ref Cname ]
+          - !Select [0, !Split [',', !Ref Cname]]
         CustomErrorResponses:
           - ErrorCode: 404
             ResponseCode: 200
@@ -407,50 +392,13 @@ Resources:
             Ref: CertificateArn
           SslSupportMethod: sni-only
 
-  WwwDistributionWard1:
-    Type: AWS::CloudFront::Distribution
-    Condition: CreateProductionResources
-    Properties:
-      DistributionConfig:
-        Aliases:
-          - Fn::Join:
-              - '.'
-              - - www
-                - !Select [ 0, !Ref Cname ]
-        DefaultCacheBehavior:
-          ForwardedValues:
-            QueryString: False
-          TargetOriginId:
-            Fn::Join:
-              - '-'
-              - - S3
-                - Ref: WwwBucketWard1
-          ViewerProtocolPolicy: redirect-to-https
-        Enabled: True
-        IPV6Enabled: True
-        Origins:
-          - DomainName: !Sub
-              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
-              - { Domain: !Select [ 0, !Ref Cname ] }
-            Id:
-              Fn::Join:
-                - '-'
-                - - S3
-                  - Ref: WwwBucketWard1
-            CustomOriginConfig:
-              OriginProtocolPolicy: http-only
-        ViewerCertificate:
-          AcmCertificateArn:
-            Ref: WwwCertificateArn
-          SslSupportMethod: sni-only
-
   DistributionWard2:
     Type: AWS::CloudFront::Distribution
     Condition: CreateProductionResources
     Properties:
       DistributionConfig:
         Aliases:
-          - !Select [ 1, !Ref Cname ]
+          - !Select [1, !Split [',', !Ref Cname]]
         CustomErrorResponses:
           - ErrorCode: 404
             ResponseCode: 200
@@ -489,50 +437,13 @@ Resources:
             Ref: CertificateArn
           SslSupportMethod: sni-only
 
-  WwwDistributionWard2:
-    Type: AWS::CloudFront::Distribution
-    Condition: CreateProductionResources
-    Properties:
-      DistributionConfig:
-        Aliases:
-          - Fn::Join:
-              - '.'
-              - - www
-                - !Select [ 1, !Ref Cname ]
-        DefaultCacheBehavior:
-          ForwardedValues:
-            QueryString: False
-          TargetOriginId:
-            Fn::Join:
-              - '-'
-              - - S3
-                - Ref: WwwBucketWard2
-          ViewerProtocolPolicy: redirect-to-https
-        Enabled: True
-        IPV6Enabled: True
-        Origins:
-          - DomainName: !Sub
-              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
-              - { Domain: !Select [ 1, !Ref Cname ] }
-            Id:
-              Fn::Join:
-                - '-'
-                - - S3
-                  - Ref: WwwBucketWard2
-            CustomOriginConfig:
-              OriginProtocolPolicy: http-only
-        ViewerCertificate:
-          AcmCertificateArn:
-            Ref: WwwCertificateArn
-          SslSupportMethod: sni-only
-
   DistributionWard3:
     Type: AWS::CloudFront::Distribution
     Condition: CreateProductionResources
     Properties:
       DistributionConfig:
         Aliases:
-          - !Select [ 2, !Ref Cname ]
+          - !Select [2, !Split [',', !Ref Cname]]
         CustomErrorResponses:
           - ErrorCode: 404
             ResponseCode: 200
@@ -571,50 +482,13 @@ Resources:
             Ref: CertificateArn
           SslSupportMethod: sni-only
 
-  WwwDistributionWard3:
-    Type: AWS::CloudFront::Distribution
-    Condition: CreateProductionResources
-    Properties:
-      DistributionConfig:
-        Aliases:
-          - Fn::Join:
-              - '.'
-              - - www
-                - !Select [ 2, !Ref Cname ]
-        DefaultCacheBehavior:
-          ForwardedValues:
-            QueryString: False
-          TargetOriginId:
-            Fn::Join:
-              - '-'
-              - - S3
-                - Ref: WwwBucketWard3
-          ViewerProtocolPolicy: redirect-to-https
-        Enabled: True
-        IPV6Enabled: True
-        Origins:
-          - DomainName: !Sub
-              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
-              - { Domain: !Select [ 2, !Ref Cname ] }
-            Id:
-              Fn::Join:
-                - '-'
-                - - S3
-                  - Ref: WwwBucketWard3
-            CustomOriginConfig:
-              OriginProtocolPolicy: http-only
-        ViewerCertificate:
-          AcmCertificateArn:
-            Ref: WwwCertificateArn
-          SslSupportMethod: sni-only
-
   DistributionWard4:
     Type: AWS::CloudFront::Distribution
     Condition: CreateProductionResources
     Properties:
       DistributionConfig:
         Aliases:
-          - !Select [ 3, !Ref Cname ]
+          - !Select [3, !Split [',', !Ref Cname]]
         CustomErrorResponses:
           - ErrorCode: 404
             ResponseCode: 200
@@ -653,50 +527,13 @@ Resources:
             Ref: CertificateArn
           SslSupportMethod: sni-only
 
-  WwwDistributionWard4:
-    Type: AWS::CloudFront::Distribution
-    Condition: CreateProductionResources
-    Properties:
-      DistributionConfig:
-        Aliases:
-          - Fn::Join:
-              - '.'
-              - - www
-                - !Select [ 3, !Ref Cname ]
-        DefaultCacheBehavior:
-          ForwardedValues:
-            QueryString: False
-          TargetOriginId:
-            Fn::Join:
-              - '-'
-              - - S3
-                - Ref: WwwBucketWard4
-          ViewerProtocolPolicy: redirect-to-https
-        Enabled: True
-        IPV6Enabled: True
-        Origins:
-          - DomainName: !Sub
-              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
-              - { Domain: !Select [ 3, !Ref Cname ] }
-            Id:
-              Fn::Join:
-                - '-'
-                - - S3
-                  - Ref: WwwBucketWard4
-            CustomOriginConfig:
-              OriginProtocolPolicy: http-only
-        ViewerCertificate:
-          AcmCertificateArn:
-            Ref: WwwCertificateArn
-          SslSupportMethod: sni-only
-
   DistributionWard5:
     Type: AWS::CloudFront::Distribution
     Condition: CreateProductionResources
     Properties:
       DistributionConfig:
         Aliases:
-          - !Select [ 4, !Ref Cname ]
+          - !Select [4, !Split [',', !Ref Cname]]
         CustomErrorResponses:
           - ErrorCode: 404
             ResponseCode: 200
@@ -735,50 +572,13 @@ Resources:
             Ref: CertificateArn
           SslSupportMethod: sni-only
 
-  WwwDistributionWard5:
-    Type: AWS::CloudFront::Distribution
-    Condition: CreateProductionResources
-    Properties:
-      DistributionConfig:
-        Aliases:
-          - Fn::Join:
-              - '.'
-              - - www
-                - !Select [ 4, !Ref Cname ]
-        DefaultCacheBehavior:
-          ForwardedValues:
-            QueryString: False
-          TargetOriginId:
-            Fn::Join:
-              - '-'
-              - - S3
-                - Ref: WwwBucketWard5
-          ViewerProtocolPolicy: redirect-to-https
-        Enabled: True
-        IPV6Enabled: True
-        Origins:
-          - DomainName: !Sub
-              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
-              - { Domain: !Select [ 4, !Ref Cname ] }
-            Id:
-              Fn::Join:
-                - '-'
-                - - S3
-                  - Ref: WwwBucketWard5
-            CustomOriginConfig:
-              OriginProtocolPolicy: http-only
-        ViewerCertificate:
-          AcmCertificateArn:
-            Ref: WwwCertificateArn
-          SslSupportMethod: sni-only
-
   DistributionWard6:
     Type: AWS::CloudFront::Distribution
     Condition: CreateProductionResources
     Properties:
       DistributionConfig:
         Aliases:
-          - !Select [ 5, !Ref Cname ]
+          - !Select [5, !Split [',', !Ref Cname]]
         CustomErrorResponses:
           - ErrorCode: 404
             ResponseCode: 200
@@ -815,41 +615,4 @@ Resources:
         ViewerCertificate:
           AcmCertificateArn:
             Ref: CertificateArn
-          SslSupportMethod: sni-only
-
-  WwwDistributionWard6:
-    Type: AWS::CloudFront::Distribution
-    Condition: CreateProductionResources
-    Properties:
-      DistributionConfig:
-        Aliases:
-          - Fn::Join:
-              - '.'
-              - - www
-                - !Select [ 5, !Ref Cname ]
-        DefaultCacheBehavior:
-          ForwardedValues:
-            QueryString: False
-          TargetOriginId:
-            Fn::Join:
-              - '-'
-              - - S3
-                - Ref: WwwBucketWard6
-          ViewerProtocolPolicy: redirect-to-https
-        Enabled: True
-        IPV6Enabled: True
-        Origins:
-          - DomainName: !Sub
-              - www.${Domain}.s3-website-${AWS::Region}.amazonaws.com
-              - { Domain: !Select [ 5, !Ref Cname ] }
-            Id:
-              Fn::Join:
-                - '-'
-                - - S3
-                  - Ref: WwwBucketWard6
-            CustomOriginConfig:
-              OriginProtocolPolicy: http-only
-        ViewerCertificate:
-          AcmCertificateArn:
-            Ref: WwwCertificateArn
           SslSupportMethod: sni-only

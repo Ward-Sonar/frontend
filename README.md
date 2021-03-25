@@ -73,9 +73,32 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Deploy is via Travis and AWS
 
-### Secret value
+### Domain
 
-Each ward requires a secret in AWS, together with a secret for the staging site. Each secret should be named in the format:
+If the domain has already been created for the api, skip this step.
+
+1. Create a hosted zone in Route53 for wardsonar.co.uk
+2. Create a hosted zone in Route53 for staging.wardsonar.co.uk
+3. Create a ns record in wardsonar.co.uk with the staging.wardsonar.co.uk nameservers
+
+### Certificates
+
+1. Create wildcard certificate in AWS Certificate Manager (_.wardsonar.co.uk, _.staging.wardsonar.co.uk) in US-East-1
+2. Verify via DNS and allow Certificate Manager to create the records in Route53
+3. make a note of the certificate ARNs as they will be used in Cloudformation
+
+### Cloudformation
+
+1. Create a stack for staging and production using the aws/core.yml template
+2. In the parameters, choose either production or staging for the Environment
+3. Enter the relevant certificate ARN for the staging or production certificate
+4. Enter the domains as a comma separated list (no spaces), e.g. foo.wardsonar.co.uk, bar.wardsonar.co.uk. For staging you only need to enter staging.wardsonar.co.uk
+5. Enter a new UUID
+6. Create the stack
+
+### Secrets Manager
+
+Each ward requires a secret in AWS, together with a secret for the staging site. Each secret should be created in the local region (e.g. eu-west-2) and named in the format:
 
 .env.frontend.[WARD]
 
@@ -102,7 +125,7 @@ DISTRIBUTION_ID=
 
 Where:
 
-- REACT_APP_WARD_NAME is the human readable anme of the Ward
+- REACT_APP_WARD_NAME is the human readable name of the Ward
 - REACT_APP_API_URL is the api endpoint to connect to
 - REACT_APP_API_TOKEN is the api token to pass in the bearer token
 - REACT_APP_URL_KEY is the random string
