@@ -65,7 +65,6 @@ class StepFour extends Component {
           alignItems="center">
             <Grid item>
               <Box
-                mt={12}
                 px={3}
                 py={2}
                 bgcolor="#FFF4D7"
