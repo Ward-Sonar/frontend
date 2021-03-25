@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Detector } from 'react-detect-offline';
 
 import Box from '@material-ui/core/Box';
@@ -12,7 +12,8 @@ class NetworkStatus extends Component {
   render() {
     return (
       <Box
-        maxWidth={396}
+        maxWidth={330}
+        boxSizing="border-box"
         px={3}
         py={2}
         border={1}
@@ -39,9 +40,9 @@ class NetworkStatus extends Component {
               <Detector
                 polling={{url: process.env.REACT_APP_API_URL}}
                 render={({ online }) => (
-                  <div>
+                  <Fragment>
                     Wifi {online ? "Online" : "Offline"}
-                  </div>
+                  </Fragment>
                 )}
               />
             </Typography>
@@ -49,9 +50,9 @@ class NetworkStatus extends Component {
               <Detector
                 polling={{url: process.env.REACT_APP_API_URL}}
                 render={({ online }) => (
-                  <div>
+                  <Fragment>
                     You can make a submission {!online && "but can't submit until you're connected"}
-                  </div>
+                  </Fragment>
                 )}
               />
             </Typography>
