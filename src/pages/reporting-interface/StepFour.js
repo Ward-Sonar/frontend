@@ -29,7 +29,7 @@ class StepFour extends Component {
   
 
   handleAnswer = (event, selected) => {
-    this.setState({ selected: [selected] }, this.props.onSetAnswer('causes', selected));
+    this.setState({ selected: selected }, this.props.onSetAnswer('causes', selected));
   };
 
   handleDetail = (event) => {
