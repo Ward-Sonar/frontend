@@ -38,9 +38,10 @@ class ReportingInterface extends Component {
   }
 
   setAnswer(id, answer) {
+    console.log(id, answer);
     this.setState({
       [id]: answer
-    });
+    }, () => console.log(this.state));
   }
 
   handleStepChange(step) {

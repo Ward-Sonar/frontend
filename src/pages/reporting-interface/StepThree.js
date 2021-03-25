@@ -25,10 +25,7 @@ class StepThree extends Component {
   handleAnswer = (event, selected) => {
     this.setState({
       selected: [selected]
-    }, () => {
-      this.props.onSetAnswer('direction', selected);
-      this.props.onSetAnswer('directionLabel', event.target.innerText);
-    });
+    }, this.props.onSetAnswer('direction', selected));
   };
 
   handleStepChange(step) {
