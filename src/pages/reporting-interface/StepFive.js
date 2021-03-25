@@ -42,8 +42,11 @@ class StepFour extends Component {
             container
             justify="center"
             alignItems="center">
-              <Grid item>
-                <Grid container spacing={5}>
+              <Grid item xs>
+                <Grid
+                  container
+                  justify="center"
+                  spacing={5}>
                   <Grid item>
                     <Button
                       variant="contained"
