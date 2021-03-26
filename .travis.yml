@@ -22,23 +22,16 @@ script:
   - echo "No tests ran"
 
 deploy:
-  # Tagged releases
+  # Tagged Production releases
   - provider: script
-    script: ENVIRONMENT=production S3_BUCKET_NAME=$S3_BUCKET_NAME_PRODUCTION DISTRIBUTION_ID=$DISTRIBUTION_ID_PRODUCTION bash .travis/deploy.sh
+    script: ENVIRONMENT=production bash .travis/deploy.sh
     skip_cleanup: true
     on:
       all_branches: true
       condition: ${TRAVIS_TAG} =~ ^[0-9]{4}\.[0-9]{2}\.[0-9]{2}\.[0-9]+$
-  # Release branches
+  # Staging
   - provider: script
-    script: ENVIRONMENT=release S3_BUCKET_NAME=$S3_BUCKET_NAME_RELEASE DISTRIBUTION_ID=$DISTRIBUTION_ID_RELEASE bash .travis/deploy.sh
-    skip_cleanup: true
-    on:
-      all_branches: true
-      condition: ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} =~ ^release\/.+$
-  # Develop
-  - provider: script
-    script: ENVIRONMENT=staging S3_BUCKET_NAME=$S3_BUCKET_NAME_STAGING DISTRIBUTION_ID=$DISTRIBUTION_ID_STAGING bash .travis/deploy.sh
+    script: ENVIRONMENT=staging bash .travis/deploy.sh
     skip_cleanup: true
     on:
       branch: develop
