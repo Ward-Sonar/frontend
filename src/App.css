@@ -1,38 +1,62 @@
-.App {
+/* Custom toggle buttons */
+.custom-toggle-button-icon {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.custom-toggle-button-icon svg {
+  max-width: 100%;
+}
+
+.custom-toggle-button-label {
+  width: 100%;
+  margin-top: auto;
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: #fff;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Gradient Bar */
+.gradient-bar {
+  display: block;
+  width: 100%;
+  height: 13px;
+  margin: 32px 0 64px;
+  background: linear-gradient(90deg, rgba(255,211,71,1) 0%, rgba(196,196,196,0) 50%, rgba(137,141,141,1) 100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media screen and (max-width: 600px) {
+  .custom-toggle-button-icon {
+    flex: 0 0 100px;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .custom-toggle-button-icon svg {
+    max-height: 60px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .custom-toggle-button-label {
+    flex: 1 1 auto;
+    width: auto;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gradient-bar {
+    position: absolute;
+    top: 0;
+    left: -40px;
+    width: 13px;
+    height: calc(100% - 24px);
+    margin: 12px 20px 64px 20px;
+    background: linear-gradient(180deg, rgba(255,211,71,1) 0%, rgba(196,196,196,0) 50%, rgba(137,141,141,1) 100%);
   }
 }

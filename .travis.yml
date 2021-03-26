@@ -1,0 +1,37 @@
+branches:
+  only:
+    # Tagged releases
+    - /^[0-9]{4}\.[0-9]{2}\.[0-9]{2}\.[0-9]+$/
+    # Master
+    - master
+    # Release branches
+    - /^release\/.+$/
+    # Develop
+    - develop
+
+language: node_js
+node_js:
+  - '10'
+
+cache: yarn
+
+install:
+  - yarn install
+
+script:
+  - echo "No tests ran"
+
+deploy:
+  # Tagged Production releases
+  - provider: script
+    script: ENVIRONMENT=production bash .travis/deploy.sh
+    skip_cleanup: true
+    on:
+      all_branches: true
+      condition: ${TRAVIS_TAG} =~ ^[0-9]{4}\.[0-9]{2}\.[0-9]{2}\.[0-9]+$
+  # Staging
+  - provider: script
+    script: ENVIRONMENT=staging bash .travis/deploy.sh
+    skip_cleanup: true
+    on:
+      branch: develop
