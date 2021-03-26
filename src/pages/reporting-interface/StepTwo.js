@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
 // Import Material UI components
 import Grid from '@material-ui/core/Grid';
@@ -14,6 +15,19 @@ import { ReactComponent as SunCloudGrey } from '../../assets/sun-cloud-grey.svg'
 import { ReactComponent as CloudGrey } from '../../assets/cloud-grey.svg';
 import { ReactComponent as DarkCloud } from '../../assets/dark-cloud.svg';
 import { ReactComponent as DarkCloudStorm } from '../../assets/dark-cloud-storm.svg';
+
+const StyledToggleButtonGroup = withStyles(() => ({
+  root: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+    gap: 16,
+  },
+  grouped: {
+    '&:not(:last-child), &:not(:first-child)': {
+      margin: '0px !important',
+    },
+  },
+}))(ToggleButtonGroup);
 
 class StepTwo extends Component {
   constructor(props) {
@@ -60,7 +74,7 @@ class StepTwo extends Component {
           container
           justify="center"
           style={{position: "relative"}}>
-          <ToggleButtonGroup
+          <StyledToggleButtonGroup
             value={selected}
             exclusive
             onChange={this.handleAnswer}
@@ -74,7 +88,7 @@ class StepTwo extends Component {
                 <Typography variant="subtitle1">Very calm</Typography>
               </div>
             </ToggleButton>
-            <ToggleButton value={-1} aria-label="Calm">
+            <ToggleButton value={-1} aria-label="Calm" style={{ margin: '0 !important' }}>
               <div className="custom-toggle-button-icon">
                 <SunCloudGrey />
               </div>
@@ -82,7 +96,7 @@ class StepTwo extends Component {
                 <Typography variant="subtitle1">Calm</Typography>
               </div>
             </ToggleButton>
-            <ToggleButton value={0} aria-label="Neither calm nor stormy">
+            <ToggleButton value={0} aria-label="Neither calm nor stormy" style={{ margin: '0 !important' }}>
               <div className="custom-toggle-button-icon">
                 <CloudGrey />
               </div>
@@ -90,7 +104,7 @@ class StepTwo extends Component {
                 <Typography variant="subtitle1">Neither calm nor stormy</Typography>
               </div>
             </ToggleButton>
-            <ToggleButton value={1} aria-label="Stormy">
+            <ToggleButton value={1} aria-label="Stormy" style={{ margin: '0 !important' }}>
               <div className="custom-toggle-button-icon">
                 <DarkCloud />
               </div>
@@ -98,7 +112,7 @@ class StepTwo extends Component {
                 <Typography variant="subtitle1">Stormy</Typography>
               </div>
             </ToggleButton>
-            <ToggleButton value={2} aria-label="Very stormy">
+            <ToggleButton value={2} aria-label="Very stormy" style={{ margin: '0 !important' }}>
               <div className="custom-toggle-button-icon">
                 <DarkCloudStorm />
               </div>
@@ -106,7 +120,7 @@ class StepTwo extends Component {
                 <Typography variant="subtitle1">Very stormy</Typography>
               </div>
             </ToggleButton>
-          </ToggleButtonGroup>
+          </StyledToggleButtonGroup>
           <div className="gradient-bar"></div>
         </Grid>
         <div style={{ marginTop: 40 }}>

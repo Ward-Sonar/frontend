@@ -19,12 +19,12 @@ class StepZero extends Component {
   
   render() {
     return (
-      <div>
+      <div style={{width: '100%'}}>
         <Button
           style={{
             position: 'absolute',
-            top: 70,
-            left: 52,
+            top: 32,
+            left: 32,
           }}
           variant="contained"
           color="secondary"
@@ -34,21 +34,19 @@ class StepZero extends Component {
         <Grid
           container
           justify="center"
-          alignItems="center">
-          <Grid item xs={6} container justify="center">
-            <Typography variant="h1" align="center" gutterBottom>
-              Not right now
-            </Typography>
-            <Typography variant="body1" align="center" gutterBottom>
-              We hope that you will do this next time.
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => this.handleStepChange(1)}>
-                Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
-            </Button>
-          </Grid>
+          alignItems="center" style={{paddingTop: 80}}>
+          <Typography variant="h1" align="center" gutterBottom style={{width: '100%'}}>
+            Not right now
+          </Typography>
+          <Typography variant="body1" align="center" gutterBottom style={{width: '100%'}}>
+            We hope that you will do this next time.
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => this.handleStepChange(1)}>
+              Finish <ArrowForwardIcon style={{ marginLeft: 8, fontSize: 40 }} />
+          </Button>
         </Grid>
       </div>
     )

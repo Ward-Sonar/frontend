@@ -61,7 +61,7 @@ class StepOne extends Component {
           <Grid
             container
             alignItems="center">
-              <Grid item>
+              <Grid item xs>
                 <Grid container spacing={5}>
                   <Grid item>
                     <Button
