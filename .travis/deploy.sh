@@ -44,7 +44,9 @@ if [ ! -z "${AWS_IAM_ROLE_ARN}" ]; then
 EOF
 fi
 
-for WARD in "${WARDS[@]}"
+echo "Deploying for environments ${WARDS[@]}"
+
+for WARD in ${WARDS[@]}
 do
 
     # Declare the configuration variables for the deployment.
