@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import { Typography } from '@material-ui/core';
 
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -41,19 +42,19 @@ class StepOne extends Component {
               How long will it take?
             </Typography>
             <Typography variant="body1" gutterBottom>
-              We very much hope that you will help us. Answering the questions will take no more than a few minutes of your time. The more times you do this, the more we will understand about how the ward feels. But if now is not a good time just click the [Not right now] button below.
+              We very much hope that you will help us. Answering the questions will take no more than a few minutes of your time. The more times you do this, the more we will understand how the ward feels. But if now is not a good time just click the [Not right now] button below.
             </Typography>
             <Typography variant="subtitle1">
               Is it anonymous?
             </Typography>
             <Typography variant="body1" gutterBottom>
-              All answers are anonymous. The data is encrypted and stored safely. Staff, patients and researchers will be able to see and discuss the data.
+              All answers are anonymous. The data are encrypted and stored safely. Staff, patients and researchers will be able to see and discuss the anonymised data.
             </Typography>
             <Typography variant="subtitle1">
               Where can I find more information?
             </Typography>
             <Typography variant="body1">
-              The study has been favourably reviewed (or approved) by xx NHS ethics committee (insert reference). If you want to know more, please click here [insert hyperlink] or ask a member of staff for an information leaflet.
+              This study has been reviewed and given favourable opinion by East Midlands – Nottingham 2 Research Ethics Committee (Reference number: 21/EM/0247). If you want to know more, please <Link href="https://yhpstrc.org/wp-content/uploads/2021/11/Ward-Sonar-Participant-Information-Sheet.pdf" rel="noopener nofollow" target="_blank" aria-label="Go to WardSonar Participant Information Sheet">click here</Link> or ask a member of staff for an information leaflet.
             </Typography>
           </Grid>
         </Grid>
