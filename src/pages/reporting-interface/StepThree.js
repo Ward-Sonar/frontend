@@ -60,7 +60,7 @@ class StepThree extends Component {
             aria-label="How does the ward atmosphere feel to you today?"
             style={{width: '100%'}}
           >
-            <ToggleButton value={-1} aria-label="Getting better">
+            <ToggleButton value={-1} aria-label="Getting calm">
               <div className="custom-toggle-button-icon">
                 <ArrowUpYellow />
               </div>
@@ -68,7 +68,15 @@ class StepThree extends Component {
                 <Typography variant="subtitle1">Getting calm</Typography>
               </div>
             </ToggleButton>
-            <ToggleButton value={1} aria-label="Getting worse">
+            <ToggleButton value={0} aria-label="The same">
+              <div className="custom-toggle-button-icon">
+                <ArrowUpYellow />
+              </div>
+              <div className="custom-toggle-button-label">
+                <Typography variant="subtitle1">The same</Typography>
+              </div>
+            </ToggleButton>
+            <ToggleButton value={1} aria-label="Getting stormy">
               <div className="custom-toggle-button-icon">
                 <ArrowDownGrey />
               </div>
