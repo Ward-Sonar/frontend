@@ -65,15 +65,7 @@ class StepThree extends Component {
                 <ArrowUpYellow />
               </div>
               <div className="custom-toggle-button-label">
-                <Typography variant="subtitle1">Getting calmer</Typography>
-              </div>
-            </ToggleButton>
-            <ToggleButton value={0} aria-label="The same">
-              <div className="custom-toggle-button-icon">
-                <NeutralDot />
-              </div>
-              <div className="custom-toggle-button-label">
-                <Typography variant="subtitle1">The same</Typography>
+                <Typography variant="subtitle1">Getting calm</Typography>
               </div>
             </ToggleButton>
             <ToggleButton value={1} aria-label="Getting worse">
