@@ -44,7 +44,7 @@ class Dashboard extends Component {
             justify="center">
             <Grid item xs={8}>
               <Typography variant="h1" align="center" gutterBottom>
-                How does the ward atmosphere feel to you today?
+                How does the ward atmosphere feel today?
               </Typography>
             </Grid>
             <Grid item xs={12} style={{marginTop: 'auto'}}>

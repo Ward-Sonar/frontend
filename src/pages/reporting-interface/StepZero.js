@@ -39,7 +39,7 @@ class StepZero extends Component {
             Not right now
           </Typography>
           <Typography variant="body1" align="center" gutterBottom style={{width: '100%'}}>
-            We hope that you will do this next time.
+            Thank you. We hope that you will do this next time.
           </Typography>
           <Button
             variant="contained"
