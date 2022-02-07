@@ -10,7 +10,6 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 // Import illustrations
 import { ReactComponent as ArrowUpYellow } from '../../assets/arrow-up-yellow.svg';
-import { ReactComponent as NeutralDot } from '../../assets/neutral-dot.svg';
 import { ReactComponent as ArrowDownGrey } from '../../assets/arrow-down-grey.svg';
 
 class StepThree extends Component {
@@ -31,7 +30,7 @@ class StepThree extends Component {
   handleStepChange(step) {
     this.props.onStepChange(step);
   }
-  
+
   render() {
     const { selected } = this.state;
 
