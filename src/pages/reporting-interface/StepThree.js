@@ -10,6 +10,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 // Import illustrations
 import { ReactComponent as ArrowUpYellow } from '../../assets/arrow-up-yellow.svg';
+import { ReactComponent as NeutralDot } from '../../assets/neutral-dot.svg';
 import { ReactComponent as ArrowDownGrey } from '../../assets/arrow-down-grey.svg';
 
 class StepThree extends Component {
@@ -69,7 +70,7 @@ class StepThree extends Component {
             </ToggleButton>
             <ToggleButton value={0} aria-label="The same">
               <div className="custom-toggle-button-icon">
-                <ArrowUpYellow />
+                <NeutralDot />
               </div>
               <div className="custom-toggle-button-label">
                 <Typography variant="subtitle1">The same</Typography>
